@@ -1,0 +1,12 @@
+package com.ftn.sbnz.backward.model.models;
+
+public enum Field {
+    NATURAL_SCIENCES,
+    SOCIAL_SCIENCES,
+    MEDICAL_SCIENCES,
+    ARTS,
+    LANGUAGES,
+    TECHNICAL_SCIENCES,
+    LECAL_ECONOMIC_SCIENCES,
+    ARGICULTURE_ENVIRONMENTAL_SCIENCES
+}
