@@ -32,14 +32,12 @@ public class ActivateBackwardRulesService {
 
 
     List<Subject> subjects1 = new ArrayList<>();
-    subjects1.add(new Subject(1, "za sta je ovaj string", Field.NATURAL_SCIENCES, SubjectName.MATHS));
-    subjects1.add(new Subject(2, "za sta je ovaj string", Field.NATURAL_SCIENCES, SubjectName.PHYSICS));
-    List<LearningMethod> learningMethods1 = new ArrayList<>();
+    subjects1.add(new Subject(1, "matematika", SubjectName.MATHS));
+    subjects1.add(new Subject(2, "fizika", SubjectName.PHYSICS));
     List<PersonalityTrait> personalityTraits1 = new ArrayList<>();
     personalityTraits1.add(PersonalityTrait.CREATIVE);
     personalityTraits1.add(PersonalityTrait.EXTROVERTED);
-    PersonalizedPlan personalizedPlan1 = new PersonalizedPlan();
-    Student s1 = new Student(1, "Pera", "Peric", subjects1, learningMethods1, null, personalizedPlan1);
+    Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.ARGICULTURE_ENVIRONMENTAL_SCIENCES);
     s1.setField(Field.NATURAL_SCIENCES);
     kSession.insert(s1);
 

@@ -76,6 +76,20 @@ public class Student {
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
     }
 
+    public Student(int id, String name, String surname, List<Subject> subjects, List<PersonalityTrait> personalityTraits,
+            Field field) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.subjects = subjects;
+        this.personalityTraits = personalityTraits;
+        this.field = field;
+        this.learningMethods = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+    }
+
 
     public Student(Integer id, String name, String surname, List<Subject> subjects,
             List<LearningMethod> learningMethods, List<PersonalityTrait> personalityTraits,
