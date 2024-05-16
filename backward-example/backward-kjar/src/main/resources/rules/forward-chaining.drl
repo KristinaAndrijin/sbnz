@@ -1,0 +1,44 @@
+package rules;
+import com.ftn.sbnz.backward.model.models.*;
+
+rule "nije uradjen test licnosti"
+when
+    String( this == "personality traits empty" )
+    $student: Student($id: id)
+        eval($student.getPersonalityTraits() == null)
+then
+    System.out.println("Test licnosti nije uradjen - " + $id);
+end
+
+rule "jeste uradjen test licnosti"
+when
+    String( this == "personality traits empty" )
+    $student: Student($id: id)
+        eval($student.getPersonalityTraits() != null)
+then
+    System.out.println("Test licnosti je uradjen - " + $id);
+    insert($student);
+end
+
+//rule "Recommend Learning Method based on Personality Trait"
+//when
+//    $student: Student(personalityTraits contains PersonalityTrait.EXTROVERTED)
+//    // Additional conditions for subject, if needed
+//then
+//    // Recommend learning methods suitable for extraverts
+//    // For example:
+//     insert(new Learnin($student, LearningMethod.GROUP_STUDY));
+//end
+//
+//// Define rules for other personality traits similarly
+//
+//
+//
+//rule "Select Recommended Learning Methods"
+//when
+//    $recommended: RecommendedLearningMethod($student: student, $learningMethods: learningMethods)
+//    not RecommendedLearningMethod(student == $student, learningMethod != $learningMethod)
+//then
+//    // Display or use recommended learning methods for the student
+//    System.out.println("Recommended learning method for student " + $student.getId() + ": " + $learningMethod);
+//end

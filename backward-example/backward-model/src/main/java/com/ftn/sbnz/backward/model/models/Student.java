@@ -1,7 +1,7 @@
 package com.ftn.sbnz.backward.model.models;
 
 import org.kie.api.definition.type.Position;
-import org.mvel2.util.Make.List;
+import java.util.List;
 
 public class Student {
     @Position(0)
@@ -24,6 +24,8 @@ public class Student {
 
     @Position(6)
     private PersonalizedPlan personalizedPlan;
+    @Position(7)
+    private Field field;
 
     public Student() {
     }
@@ -103,6 +105,13 @@ public class Student {
 
     public void setPersonalizedPlan(PersonalizedPlan personalizedPlan) {
         this.personalizedPlan = personalizedPlan;
+    }
+    public Field getField() {
+        return field;
+    }
+
+    public void setField(Field field) {
+        this.field = field;
     }
 
     @Override

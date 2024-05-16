@@ -1,12 +1,77 @@
 package rules;
 
 import com.ftn.sbnz.backward.model.models.Location;
+import com.ftn.sbnz.backward.model.models.Student;
+import com.ftn.sbnz.backward.model.models.PersonalityTrait
+import com.ftn.sbnz.backward.model.models.*;
+import java.util.List
+import java.util.ArrayList;
 
-query isContainedIn( String x, String y )
-  Location( x, y; )
-  or
-  ( Location( z, y; ) and isContainedIn( x, z; ) )
+rule "personality traits empty"
+when
+    String( this == "personality traits empty" )
+    $student: Student($id: id)
+        eval($student.getPersonalityTraits() == null)
+then
+    System.out.println("Lista personalityTraits je prazna za studenta: " + $id);
 end
+
+//rule "Obradi Osobine Licnosti"
+//when
+//    $student: Student(personalityTraits != null)
+//then
+//    // Izvucite osobine licnosti i izvrsite metode ucenja
+//    List<PersonalityTrait> osobine = $student.getPersonalityTraits();
+//    for (PersonalityTrait osobina : osobine) {
+//        MetodaUcenja.izvrsiMetoduUcenja(osobina);
+//    }
+//end
+
+
+rule "personality traits analyse"
+when
+    $student: Student(personalityTraits contains PersonalityTrait.EXTROVERTED)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethods());
+        if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
+                learningMethods.add(LearningMethod.GROUP_LEARNING);
+            }
+            if (!learningMethods.contains(LearningMethod.VERBAL)) {
+                learningMethods.add(LearningMethod.VERBAL);
+            }
+        modify($student) {
+            setLearningMethods(learningMethods)
+        }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+rule "field analyse"
+when
+    $student: Student(field == Field.NATURAL_SCIENCES)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethods());
+        if (!learningMethods.contains(LearningMethod.AUDITORY)) {
+                learningMethods.add(LearningMethod.AUDITORY);
+            }
+            if (!learningMethods.contains(LearningMethod.VERBAL)) {
+                learningMethods.add(LearningMethod.VERBAL);
+            }
+        modify($student) {
+            setLearningMethods(learningMethods)
+        }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+//
+//// Define rules for other personality traits similarly
+//
+
+
+//query isContainedIn( String x, String y )
+//  Location( x, y; )
+//  or
+//  ( Location( z, y; ) and isContainedIn( x, z; ) )
+//end
 
 rule "go" salience 10
 when
@@ -19,40 +84,42 @@ end
 rule "go1"
 when
     String( this == "go1" )
-    isContainedIn("Office", "House"; )
+//    isContainedIn("Office", "House"; )
 then
-    System.out.println( "office is in the house" );
-end
-
-rule "go2"
-when
-    String( this == "go2" )
-    isContainedIn("Draw", "House"; )
-then
-    System.out.println( "Draw in the House" );
-end
-
-rule "go3"
-when
-    String( this == "go3" )
-    isContainedIn("Key", "Office"; )
-then
-    System.out.println( "Key in the Office" );
+    System.out.println( "office is inhousee" );
 end
 
 
-rule "go4"
-when
-    String( this == "go4" )
-    isContainedIn(thing, "Office"; )
-then
-    System.out.println( "thing " + thing + " is in the Office" );
-end
-
-rule "go5"
-when
-    String( this == "go5" )
-    isContainedIn(thing, location; )
-then
-    System.out.println( "thing " + thing + " is in " + location );
-end
+//
+//rule "go2"
+//when
+//    String( this == "go2" )
+//    isContainedIn("Draw", "House"; )
+//then
+//    System.out.println( "Draw in the House" );
+//end
+//
+//rule "go3"
+//when
+//    String( this == "go3" )
+//    isContainedIn("Key", "Office"; )
+//then
+//    System.out.println( "Key in the Office" );
+//end
+//
+//
+//rule "go4"
+//when
+//    String( this == "go4" )
+//    isContainedIn(thing, "Office"; )
+//then
+//    System.out.println( "thing " + thing + " is in the Office" );
+//end
+//
+//rule "go5"
+//when
+//    String( this == "go5" )
+//    isContainedIn(thing, location; )
+//then
+//    System.out.println( "thing " + thing + " is in " + location );
+//end
