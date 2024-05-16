@@ -52,20 +52,107 @@ rule "recommend learning methods for field - NATURAL SCIENCES"
 when
     $student: Student(field == Field.NATURAL_SCIENCES)
 then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethods());
-        if (!learningMethods.contains(LearningMethod.AUDITORY)) {
-                learningMethods.add(LearningMethod.AUDITORY);
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+        if (!learningMethodsBasedOnField.contains(LearningMethod.AUDITORY)) {
+                learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
             }
-            if (!learningMethods.contains(LearningMethod.VERBAL)) {
-                learningMethods.add(LearningMethod.VERBAL);
+            if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
+                learningMethodsBasedOnField.add(LearningMethod.VERBAL);
             }
         modify($student) {
             for (LearningMethod lm : learningMethods)
-            setLearningMethods(lm);
+            setLearningMethodsBasedOnField(lm);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
 
+
+rule "recommend learning methods for field - SOCIAL SCIENCES"
+when
+    $student: Student(field == Field.SOCIAL_SCIENCES)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+        if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
+                learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
+            }
+            if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
+                learningMethodsBasedOnField.add(LearningMethod.VERBAL);
+            }
+        modify($student) {
+            for (LearningMethod lm : learningMethods)
+            setLearningMethodsBasedOnField(lm);
+        }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+rule "recommend learning methods for field - MEDICAL SCIENCES"
+when
+    $student: Student(field == Field.MEDICAL)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+        if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
+                learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
+            }
+            if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
+                learningMethodsBasedOnField.add(LearningMethod.VERBAL);
+            }
+        modify($student) {
+            for (LearningMethod lm : learningMethods)
+            setLearningMethodsBasedOnField(lm);
+        }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+when
+    $student: Student(field == Field.SOCIAL_SCIENCES)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+        if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
+                learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
+            }
+            if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
+                learningMethodsBasedOnField.add(LearningMethod.VERBAL);
+            }
+        modify($student) {
+            for (LearningMethod lm : learningMethods)
+            setLearningMethodsBasedOnField(lm);
+        }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+when
+    $student: Student(field == Field.SOCIAL_SCIENCES)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+        if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
+                learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
+            }
+            if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
+                learningMethodsBasedOnField.add(LearningMethod.VERBAL);
+            }
+        modify($student) {
+            for (LearningMethod lm : learningMethods)
+            setLearningMethodsBasedOnField(lm);
+        }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+when
+    $student: Student(field == Field.SOCIAL_SCIENCES)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+        if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
+                learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
+            }
+            if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
+                learningMethodsBasedOnField.add(LearningMethod.VERBAL);
+            }
+        modify($student) {
+            for (LearningMethod lm : learningMethods)
+            setLearningMethodsBasedOnField(lm);
+        }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
 //
 //// Define rules for other personality traits similarly
 //
