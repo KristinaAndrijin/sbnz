@@ -29,6 +29,15 @@ public class Student {
     @Position(7)
     private Field field;
 
+    @Position(8)
+    private List<LearningMethod> learningMethodsBasedOnTraits;
+
+    @Position(9)
+    private List<LearningMethod> learningMethodsBasedOnField;
+
+    @Position(10)
+    private List<LearningMethod> learningMethodsBasedOnSubjectName;
+
 
     public Student() {
     }
@@ -52,6 +61,23 @@ public class Student {
         this.learningMethods = new ArrayList<LearningMethod>();
         this.personalityTraits = personalityTraits;
         this.personalizedPlan = personalizedPlan;
+    }
+
+    public Student(Integer id, String name, String surname, List<Subject> subjects,
+            List<LearningMethod> learningMethods, List<PersonalityTrait> personalityTraits,
+            PersonalizedPlan personalizedPlan, Field field, List<LearningMethod> learningMethodsBasedOnTraits,
+            List<LearningMethod> learningMethodsBasedOnField, List<LearningMethod> learningMethodsBasedOnSubjectName) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.subjects = subjects;
+        this.learningMethods = new ArrayList<LearningMethod>();
+        this.personalityTraits = personalityTraits;
+        this.personalizedPlan = personalizedPlan;
+        this.field = field;
+        this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
     }
 
     public Integer getId() {
@@ -116,6 +142,39 @@ public class Student {
     public void setField(Field field) {
         this.field = field;
     }
+
+    
+
+    public List<LearningMethod> getLearningMethodsBasedOnTraits() {
+        return learningMethodsBasedOnTraits;
+    }
+
+
+    public void setLearningMethodsBasedOnTraits(LearningMethod lm) {
+        this.learningMethodsBasedOnTraits.add(lm);
+    }
+
+
+    public List<LearningMethod> getLearningMethodsBasedOnField() {
+        return learningMethodsBasedOnField;
+    }
+
+
+    public void setLearningMethodsBasedOnField(LearningMethod lm) {
+        this.learningMethodsBasedOnField.add(lm);
+    }
+
+
+    public List<LearningMethod> getLearningMethodsBasedOnSubjectName() {
+        return learningMethodsBasedOnSubjectName;
+    }
+
+
+
+    public void setLearningMethodsBasedOnSubjectName(LearningMethod lm) {
+        this.learningMethodsBasedOnSubjectName.add(lm);
+    }
+
 
     @Override
     public int hashCode() {
