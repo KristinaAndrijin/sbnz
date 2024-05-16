@@ -7,6 +7,8 @@ import com.ftn.sbnz.backward.model.models.*;
 import com.ftn.sbnz.backward.service.services.*;
 import java.util.List
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 rule "personality traits empty"
@@ -339,5 +341,153 @@ when
 //    isContainedIn("Office", "House"; )
 then
     System.out.println( "office is inhousee" );
+end
+
+// rule "recommend learning methods for subject - PHYSICS"
+// when
+//     $student: Student(subjects contains $subject)
+//     $subject: Subject(subjectName != null, name == "PHYSICS") from $student.getSubjects()
+// then
+//     ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//         if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.VERBAL);
+//             }
+//             if (!learningMethodsBasedOnField.contains(LearningMethod.AUDITORY)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
+//             }
+//         if (!learningMethodsBasedOnField.contains(LearningMethod.LOGICAL_MATHEMATICAL)) {
+//               learningMethodsBasedOnField.add(LearningMethod.LOGICAL_MATHEMATICAL);
+//                     }
+//         modify($student) {
+//             setLearningMethodsBasedOnField(learningMethodsBasedOnField)
+//         }
+//     System.out.println("Izmenjeni objekat studenta: " + $student);
+// end
+
+// rule "recommend learning methods for subject - HISTORY"
+// when
+//     $student: Student(subjects contains $subject)
+//     $subject: Subject(subjectName != null, name == "HISTORY") from $student.getSubjects()
+// then
+//     ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//         if (!learningMethodsBasedOnField.contains(LearningMethod.VISUAL)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.VISUAL);
+//             }
+//             if (!learningMethodsBasedOnField.contains(LearningMethod.AUDITORY)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
+//             }
+//         if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
+//               learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
+//                     }
+//         modify($student) {
+//             setLearningMethodsBasedOnField(learningMethodsBasedOnField)
+//         }
+//     System.out.println("Izmenjeni objekat studenta: " + $student);
+// end
+
+
+// rule "recommend learning methods for subject - ENGLISH"
+// when
+//     $student: Student(subjects contains $subject)
+//     $subject: Subject(subjectName != null, name == "ENGLISH") from $student.getSubjects()
+// then
+//     ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//         if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.VERBAL);
+//             }
+//             if (!learningMethodsBasedOnField.contains(LearningMethod.AUDITORY)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
+//             }
+//         modify($student) {
+//             setLearningMethodsBasedOnField(learningMethodsBasedOnField)
+//         }
+//     System.out.println("Izmenjeni objekat studenta: " + $student);
+// end
+
+
+// rule "recommend learning methods for subject - PROGRAMMING"
+// when
+//     $student: Student(subjects contains $subject)
+//     $subject: Subject(subjectName != null, name == "PROGRAMMING") from $student.getSubjects()
+// then
+//     ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//         if (!learningMethodsBasedOnField.contains(LearningMethod.VISUAL)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.VISUAL);
+//             }
+//             if (!learningMethodsBasedOnField.contains(LearningMethod.KINESTHETIC)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.KINESTHETIC);
+//             }
+//         if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
+//               learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
+//                     }
+//         modify($student) {
+//             setLearningMethodsBasedOnField(learningMethodsBasedOnField)
+//         }
+//     System.out.println("Izmenjeni objekat studenta: " + $student);
+// end
+
+
+// rule "recommend learning methods for subject - MATHS"
+// when
+//     $student: Student(subjects contains $subject)
+//     $subject: Subject(subjectName != null, name == "MATHS") from $student.getSubjects()
+// then
+//     ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//         if (!learningMethodsBasedOnField.contains(LearningMethod.VISUAL)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.VISUAL);
+//             }
+//             if (!learningMethodsBasedOnField.contains(LearningMethod.AUDITORY)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
+//             }
+//         if (!learningMethodsBasedOnField.contains(LearningMethod.LOGICAL_MATHEMATICAL)) {
+//               learningMethodsBasedOnField.add(LearningMethod.LOGICAL_MATHEMATICAL);
+//                     }
+//         modify($student) {
+//             setLearningMethodsBasedOnField(learningMethodsBasedOnField)
+//         }
+//     System.out.println("Izmenjeni objekat studenta: " + $student);
+// end
+
+
+// rule "recommend learning methods for subject - ART"
+// when
+//     $student: Student(subjects contains $subject)
+//     $subject: Subject(subjectName != null, name == "ART") from $student.getSubjects()
+// then
+//     ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//         if (!learningMethodsBasedOnField.contains(LearningMethod.VISUAL)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.VISUAL);
+//             }
+//             if (!learningMethodsBasedOnField.contains(LearningMethod.AUDIO_VISUAL)) {
+//                 learningMethodsBasedOnField.add(LearningMethod.AUDIO_VISUAL);
+//             }
+//         modify($student) {
+//             setLearningMethodsBasedOnField(learningMethodsBasedOnField)
+//         }
+//     System.out.println("Izmenjeni objekat studenta: " + $student);
+// end
+
+
+rule "create recommendation learning methods list"
+when
+    $student: Student(field == Field.TECHNICAL_SCIENCES, 
+                      learningMethodsBasedOnTraits != null, 
+                      !learningMethodsBasedOnTraits.isEmpty(),
+                      learningMethodsBasedOnField != null,
+                      !learningMethodsBasedOnField.isEmpty())
+then
+    List<LearningMethod> uniqueTraitsMethods = new ArrayList<>(new HashSet<>( $student.getLearningMethodsBasedOnTraits() ));
+    
+    List<LearningMethod> uniqueFieldMethods = new ArrayList<>(new HashSet<>( $student.getLearningMethodsBasedOnField() ));
+
+    Set<LearningMethod> commonMethods = new HashSet<>( $student.getLearningMethodsBasedOnTraits() );
+    commonMethods.retainAll( $student.getLearningMethodsBasedOnField() );
+    List<LearningMethod> commons = new ArrayList<LearningMethod>(commonMethods);
+
+    modify($student) {
+        setLearningMethods(commons);
+    }
+
+
 end
 

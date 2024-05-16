@@ -116,6 +116,10 @@ public class ActivateBackwardRulesService {
     kSession.fireAllRules();
     System.out.println("---");
     System.out.println(s1);
+    System.out.println("----------------------final--------------------------------");
+    kSession.insert("create recommendation learning methods list");
+    kSession.fireAllRules();
+    System.out.println(s1);
 
 //    kSession.insert("field analyse");
 //    kSession.fireAllRules();

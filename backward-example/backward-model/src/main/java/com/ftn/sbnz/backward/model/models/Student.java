@@ -159,8 +159,10 @@ public class Student {
         return learningMethods;
     }
 
-    public void setLearningMethods(LearningMethod lm) {
-        this.learningMethods.add(lm);
+    public void setLearningMethods(List<LearningMethod> lms) {
+        for (LearningMethod lm : lms) {
+            this.learningMethods.add(lm);
+        }
     }
 
     public List<PersonalityTrait> getPersonalityTraits() {
