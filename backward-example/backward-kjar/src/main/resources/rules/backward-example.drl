@@ -12,7 +12,7 @@ rule "personality traits empty"
 when
     String( this == "personality traits empty" )
     $student: Student($id: id)
-        eval($student.getPersonalityTraits() == null)
+        eval($student.getPersonalityTraits() == null || $student.getPersonalityTraits().isEmpty())
 then
     System.out.println("Lista personalityTraits je prazna za studenta: " + $id);
 end
@@ -34,19 +34,150 @@ when
     $student: Student(personalityTraits contains PersonalityTrait.EXTROVERTED)
 then
     ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
-        if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
-                learningMethods.add(LearningMethod.GROUP_LEARNING);
-            }
-            if (!learningMethods.contains(LearningMethod.VERBAL)) {
-                learningMethods.add(LearningMethod.VERBAL);
-            }
-        modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnTraits(lm);
+    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
+            learningMethods.add(LearningMethod.GROUP_LEARNING);
         }
+    if (!learningMethods.contains(LearningMethod.AUDITORY)) {
+        learningMethods.add(LearningMethod.VERBAL);
+    } 
+
+    if (!learningMethods.contains(LearningMethod.VISUAL)) {
+        learningMethods.add(LearningMethod.VISUAL);
+    } 
+
+    modify($student) {
+        for (LearningMethod lm : learningMethods)
+        setLearningMethodsBasedOnTraits(lm);
+    }
+
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
 
+rule "recommend learning methods for personality trait - INTROVERTED"
+when
+    $student: Student(personalityTraits contains PersonalityTrait.INTROVERTED)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+    if (!learningMethods.contains(LearningMethod.AUDITORY)) {
+            learningMethods.add(LearningMethod.AUDITORY);
+    }
+    if (!learningMethods.contains(LearningMethod.VISUAL)) {
+        learningMethods.add(LearningMethod.VISUAL);
+    }
+    if (!learningMethods.contains(LearningMethod.LEARNING_THROUGH_PLAY)) {
+        learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
+    }
+    modify($student) {
+        for (LearningMethod lm : learningMethods)
+        setLearningMethodsBasedOnTraits(lm);
+    }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+rule "recommend learning methods for personality trait - ANALYTICAL"
+when
+    $student: Student(personalityTraits contains PersonalityTrait.ANALYTICAL)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+    if (!learningMethods.contains(LearningMethod.LOGICAL_MATHEMATICAL)) {
+            learningMethods.add(LearningMethod.LOGICAL_MATHEMATICAL);
+    }
+    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+        learningMethods.add(LearningMethod.KINESTHETIC);
+    }
+    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
+        learningMethods.add(LearningMethod.GROUP_LEARNING);
+    }
+    modify($student) {
+        for (LearningMethod lm : learningMethods)
+        setLearningMethodsBasedOnTraits(lm);
+    }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+rule "recommend learning methods for personality trait - CREATIVE"
+when
+    $student: Student(personalityTraits contains PersonalityTrait.CREATIVE)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+    if (!learningMethods.contains(LearningMethod.LEARNING_THROUGH_PLAY)) {
+            learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
+    }
+    if (!learningMethods.contains(LearningMethod.AUDIO_VISUAL)) {
+        learningMethods.add(LearningMethod.AUDIO_VISUAL);
+    }
+    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+        learningMethods.add(LearningMethod.KINESTHETIC);
+    }
+    modify($student) {
+        for (LearningMethod lm : learningMethods)
+        setLearningMethodsBasedOnTraits(lm);
+    }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+
+rule "recommend learning methods for personality trait - PRACTICAL"
+when
+    $student: Student(personalityTraits contains PersonalityTrait.PRACTICAL)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+            learningMethods.add(LearningMethod.KINESTHETIC);
+    }
+    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
+        learningMethods.add(LearningMethod.GROUP_LEARNING);
+    }
+    if (!learningMethods.contains(LearningMethod.LEARNING_THROUGH_PLAY)) {
+        learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
+    }
+    modify($student) {
+        for (LearningMethod lm : learningMethods)
+        setLearningMethodsBasedOnTraits(lm);
+    }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+
+rule "recommend learning methods for personality trait - ORGANIZED"
+when
+    $student: Student(personalityTraits contains PersonalityTrait.ORGANIZED)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+    if (!learningMethods.contains(LearningMethod.VISUAL)) {
+            learningMethods.add(LearningMethod.VISUAL);
+    }
+    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+        learningMethods.add(LearningMethod.KINESTHETIC);
+    }
+    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
+        learningMethods.add(LearningMethod.GROUP_LEARNING);
+    }
+    modify($student) {
+        for (LearningMethod lm : learningMethods)
+        setLearningMethodsBasedOnTraits(lm);
+    }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
+
+
+rule "recommend learning methods for personality trait - REFLECTIVE"
+when
+    $student: Student(personalityTraits contains PersonalityTrait.REFLECTIVE)
+then
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+    if (!learningMethods.contains(LearningMethod.VERBAL)) {
+            learningMethods.add(LearningMethod.VERBAL);
+    }
+    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+        learningMethods.add(LearningMethod.KINESTHETIC);
+    }
+    modify($student) {
+        for (LearningMethod lm : learningMethods)
+        setLearningMethodsBasedOnTraits(lm);
+    }
+    System.out.println("Izmenjeni objekat studenta: " + $student);
+end
 
 rule "recommend learning methods for field - NATURAL SCIENCES"
 when
