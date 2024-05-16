@@ -19,7 +19,7 @@ public class Student {
     private List<Subject> subjects;
 
     @Position(4)
-    private List<LearningMethod> learningMethods;
+    public List<LearningMethod> learningMethods;
 
     @Position(5)
     private List<PersonalityTrait> personalityTraits;
@@ -27,13 +27,13 @@ public class Student {
     @Position(6)
     private PersonalizedPlan personalizedPlan;
     @Position(7)
-    private Field field;
+    public Field field;
 
     @Position(8)
-    private List<LearningMethod> learningMethodsBasedOnTraits;
+    public List<LearningMethod> learningMethodsBasedOnTraits;
 
     @Position(9)
-    private List<LearningMethod> learningMethodsBasedOnField;
+    public List<LearningMethod> learningMethodsBasedOnField;
 
     @Position(10)
     private List<LearningMethod> learningMethodsBasedOnSubjectName;
@@ -282,10 +282,18 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student [id=" + id + ", name=" + name + ", surname=" + surname + ", subjects=" + subjects
-                + ", learningMethods=" + learningMethods + ", personalityTraits=" + personalityTraits
-                + ", personalizedPlan=" + personalizedPlan + "]";
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", subjects=" + subjects +
+                ", learningMethods=" + learningMethods +
+                ", personalityTraits=" + personalityTraits +
+                ", personalizedPlan=" + personalizedPlan +
+                ", field=" + field +
+                ", learningMethodsBasedOnTraits=" + learningMethodsBasedOnTraits +
+                ", learningMethodsBasedOnField=" + learningMethodsBasedOnField +
+                ", learningMethodsBasedOnSubjectName=" + learningMethodsBasedOnSubjectName +
+                '}';
     }
-
-    
 }

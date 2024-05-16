@@ -32,28 +32,29 @@ public class ActivateBackwardRulesService {
 
 
     List<Subject> subjects1 = new ArrayList<>();
-<<<<<<< Updated upstream
     subjects1.add(new Subject(1, "matematika", SubjectName.MATHS));
     subjects1.add(new Subject(2, "fizika", SubjectName.PHYSICS));
-=======
-    subjects1.add(new Subject(1, "za sta je ovaj string",  SubjectName.MATHS));
-    subjects1.add(new Subject(2, "za sta je ovaj string", SubjectName.PHYSICS));
-    List<LearningMethod> learningMethods1 = new ArrayList<>();
->>>>>>> Stashed changes
     List<PersonalityTrait> personalityTraits1 = new ArrayList<>();
     personalityTraits1.add(PersonalityTrait.CREATIVE);
     personalityTraits1.add(PersonalityTrait.EXTROVERTED);
-    Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.ARGICULTURE_ENVIRONMENTAL_SCIENCES);
-    s1.setField(Field.NATURAL_SCIENCES);
+    Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.ARTS);
+    s1.setField(Field.ARTS);
     kSession.insert(s1);
 
-    kSession.insert("personality traits empty");
-    kSession.fireAllRules();
-    System.out.println("---");
+//    kSession.insert("personality traits empty");
+//    kSession.fireAllRules();
+//    System.out.println("---");
 
     kSession.insert("recommend learning methods for field - NATURAL SCIENCES");
+    kSession.insert("recommend learning methods for field - SOCIAL SCIENCES");
+    kSession.insert("recommend learning methods for field - MEDICAL SCIENCES");
+    kSession.insert("recommend learning methods for field - ARTS");
+    kSession.insert("recommend learning methods for field - LANGUAGES");
+    kSession.insert("recommend learning methods for field - TECHNICAL SCIENCES");
+    kSession.insert("recommend learning methods for field - LECAL ECONOMIC SCIENCES");
+    kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
     kSession.fireAllRules();
-    System.out.println("---");
+    System.out.println("stundetttt" + s1);
 
 //    kSession.insert("field analyse");
 //    kSession.fireAllRules();

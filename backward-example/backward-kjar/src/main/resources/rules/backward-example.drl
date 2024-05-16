@@ -28,330 +28,306 @@ end
 //    }
 //end
 
-
-rule "recommend learning methods for personality trait - EXTROVERTED"
-when
-    $student: Student(personalityTraits contains PersonalityTrait.EXTROVERTED)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
-    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
-            learningMethods.add(LearningMethod.GROUP_LEARNING);
-        }
-    if (!learningMethods.contains(LearningMethod.AUDITORY)) {
-        learningMethods.add(LearningMethod.VERBAL);
-    } 
-
-    if (!learningMethods.contains(LearningMethod.VISUAL)) {
-        learningMethods.add(LearningMethod.VISUAL);
-    } 
-
-    modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
-    }
-
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-rule "recommend learning methods for personality trait - INTROVERTED"
-when
-    $student: Student(personalityTraits contains PersonalityTrait.INTROVERTED)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
-    if (!learningMethods.contains(LearningMethod.AUDITORY)) {
-            learningMethods.add(LearningMethod.AUDITORY);
-    }
-    if (!learningMethods.contains(LearningMethod.VISUAL)) {
-        learningMethods.add(LearningMethod.VISUAL);
-    }
-    if (!learningMethods.contains(LearningMethod.LEARNING_THROUGH_PLAY)) {
-        learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
-    }
-    modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
-    }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-rule "recommend learning methods for personality trait - ANALYTICAL"
-when
-    $student: Student(personalityTraits contains PersonalityTrait.ANALYTICAL)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
-    if (!learningMethods.contains(LearningMethod.LOGICAL_MATHEMATICAL)) {
-            learningMethods.add(LearningMethod.LOGICAL_MATHEMATICAL);
-    }
-    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
-        learningMethods.add(LearningMethod.KINESTHETIC);
-    }
-    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
-        learningMethods.add(LearningMethod.GROUP_LEARNING);
-    }
-    modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
-    }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-rule "recommend learning methods for personality trait - CREATIVE"
-when
-    $student: Student(personalityTraits contains PersonalityTrait.CREATIVE)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
-    if (!learningMethods.contains(LearningMethod.LEARNING_THROUGH_PLAY)) {
-            learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
-    }
-    if (!learningMethods.contains(LearningMethod.AUDIO_VISUAL)) {
-        learningMethods.add(LearningMethod.AUDIO_VISUAL);
-    }
-    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
-        learningMethods.add(LearningMethod.KINESTHETIC);
-    }
-    modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
-    }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-
-rule "recommend learning methods for personality trait - PRACTICAL"
-when
-    $student: Student(personalityTraits contains PersonalityTrait.PRACTICAL)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
-    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
-            learningMethods.add(LearningMethod.KINESTHETIC);
-    }
-    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
-        learningMethods.add(LearningMethod.GROUP_LEARNING);
-    }
-    if (!learningMethods.contains(LearningMethod.LEARNING_THROUGH_PLAY)) {
-        learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
-    }
-    modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
-    }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-
-rule "recommend learning methods for personality trait - ORGANIZED"
-when
-    $student: Student(personalityTraits contains PersonalityTrait.ORGANIZED)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
-    if (!learningMethods.contains(LearningMethod.VISUAL)) {
-            learningMethods.add(LearningMethod.VISUAL);
-    }
-    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
-        learningMethods.add(LearningMethod.KINESTHETIC);
-    }
-    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
-        learningMethods.add(LearningMethod.GROUP_LEARNING);
-    }
-    modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
-    }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-
-rule "recommend learning methods for personality trait - REFLECTIVE"
-when
-    $student: Student(personalityTraits contains PersonalityTrait.REFLECTIVE)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
-    if (!learningMethods.contains(LearningMethod.VERBAL)) {
-            learningMethods.add(LearningMethod.VERBAL);
-    }
-    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
-        learningMethods.add(LearningMethod.KINESTHETIC);
-    }
-    modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
-    }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
+//
+//rule "recommend learning methods for personality trait - EXTROVERTED"
+//when
+//    $student: Student(personalityTraits contains PersonalityTrait.EXTROVERTED)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+//    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
+//            learningMethods.add(LearningMethod.GROUP_LEARNING);
+//        }
+//    if (!learningMethods.contains(LearningMethod.AUDITORY)) {
+//        learningMethods.add(LearningMethod.VERBAL);
+//    }
+//
+//    if (!learningMethods.contains(LearningMethod.VISUAL)) {
+//        learningMethods.add(LearningMethod.VISUAL);
+//    }
+//
+//    modify($student) {
+//        for (LearningMethod lm : learningMethods)
+//        setLearningMethodsBasedOnTraits(lm);
+//    }
+//
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
+//
+//rule "recommend learning methods for personality trait - INTROVERTED"
+//when
+//    $student: Student(personalityTraits contains PersonalityTrait.INTROVERTED)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+//    if (!learningMethods.contains(LearningMethod.AUDITORY)) {
+//            learningMethods.add(LearningMethod.AUDITORY);
+//    }
+//    if (!learningMethods.contains(LearningMethod.VISUAL)) {
+//        learningMethods.add(LearningMethod.VISUAL);
+//    }
+//    if (!learningMethods.contains(LearningMethod.LEARNING_THROUGH_PLAY)) {
+//        learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
+//    }
+//    modify($student) {
+//        for (LearningMethod lm : learningMethods)
+//        setLearningMethodsBasedOnTraits(lm);
+//    }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
+//
+//rule "recommend learning methods for personality trait - ANALYTICAL"
+//when
+//    $student: Student(personalityTraits contains PersonalityTrait.ANALYTICAL)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+//    if (!learningMethods.contains(LearningMethod.LOGICAL_MATHEMATICAL)) {
+//            learningMethods.add(LearningMethod.LOGICAL_MATHEMATICAL);
+//    }
+//    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+//        learningMethods.add(LearningMethod.KINESTHETIC);
+//    }
+//    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
+//        learningMethods.add(LearningMethod.GROUP_LEARNING);
+//    }
+//    modify($student) {
+//        for (LearningMethod lm : learningMethods)
+//        setLearningMethodsBasedOnTraits(lm);
+//    }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
+//
+//rule "recommend learning methods for personality trait - CREATIVE"
+//when
+//    $student: Student(personalityTraits contains PersonalityTrait.CREATIVE)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+//    if (!learningMethods.contains(LearningMethod.LEARNING_THROUGH_PLAY)) {
+//            learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
+//    }
+//    if (!learningMethods.contains(LearningMethod.AUDIO_VISUAL)) {
+//        learningMethods.add(LearningMethod.AUDIO_VISUAL);
+//    }
+//    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+//        learningMethods.add(LearningMethod.KINESTHETIC);
+//    }
+//    modify($student) {
+//        for (LearningMethod lm : learningMethods)
+//        setLearningMethodsBasedOnTraits(lm);
+//    }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
+//
+//
+//rule "recommend learning methods for personality trait - PRACTICAL"
+//when
+//    $student: Student(personalityTraits contains PersonalityTrait.PRACTICAL)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+//    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+//            learningMethods.add(LearningMethod.KINESTHETIC);
+//    }
+//    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
+//        learningMethods.add(LearningMethod.GROUP_LEARNING);
+//    }
+//    if (!learningMethods.contains(LearningMethod.LEARNING_THROUGH_PLAY)) {
+//        learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
+//    }
+//    modify($student) {
+//        for (LearningMethod lm : learningMethods)
+//        setLearningMethodsBasedOnTraits(lm);
+//    }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
+//
+//
+//rule "recommend learning methods for personality trait - ORGANIZED"
+//when
+//    $student: Student(personalityTraits contains PersonalityTrait.ORGANIZED)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+//    if (!learningMethods.contains(LearningMethod.VISUAL)) {
+//            learningMethods.add(LearningMethod.VISUAL);
+//    }
+//    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+//        learningMethods.add(LearningMethod.KINESTHETIC);
+//    }
+//    if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
+//        learningMethods.add(LearningMethod.GROUP_LEARNING);
+//    }
+//    modify($student) {
+//        for (LearningMethod lm : learningMethods)
+//        setLearningMethodsBasedOnTraits(lm);
+//    }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
+//
+//
+//rule "recommend learning methods for personality trait - REFLECTIVE"
+//when
+//    $student: Student(personalityTraits contains PersonalityTrait.REFLECTIVE)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
+//    if (!learningMethods.contains(LearningMethod.VERBAL)) {
+//            learningMethods.add(LearningMethod.VERBAL);
+//    }
+//    if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+//        learningMethods.add(LearningMethod.KINESTHETIC);
+//    }
+//    modify($student) {
+//        for (LearningMethod lm : learningMethods)
+//        setLearningMethodsBasedOnTraits(lm);
+//    }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
 
 rule "recommend learning methods for field - NATURAL SCIENCES"
 when
     $student: Student(field == Field.NATURAL_SCIENCES)
 then
     ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
-        if (!learningMethodsBasedOnField.contains(LearningMethod.AUDITORY)) {
-                learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
+        if (!learningMethods.contains(LearningMethod.AUDITORY)) {
+                learningMethods.add(LearningMethod.AUDITORY);
             }
-            if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.VERBAL);
+            if (!learningMethods.contains(LearningMethod.VERBAL)) {
+                learningMethods.add(LearningMethod.VERBAL);
             }
         modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
+            setLearningMethodsBasedOnField(LearningMethod.AUDITORY)
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
 
-
-rule "recommend learning methods for field - SOCIAL SCIENCES"
-when
-    $student: Student(field == Field.SOCIAL_SCIENCES)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
-        if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
-                learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
-            }
-            if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.VERBAL);
-            }
-        modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
-        }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-rule "recommend learning methods for field - MEDICAL SCIENCES"
-when
-    $student: Student(field == Field.MEDICAL_SCIENCES)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
-        if (!learningMethodsBasedOnField.contains(LearningMethod.KINESTHETIC)) {
-                learningMethodsBasedOnField.add(LearningMethod.KINESTHETIC);
-            }
-            if (!learningMethodsBasedOnField.contains(LearningMethod.AUDIO_VISUAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.AUDIO_VISUAL);
-            }
-        modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
-        }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
+//
+//rule "recommend learning methods for field - SOCIAL SCIENCES"
+//when
+//    $student: Student(field == Field.SOCIAL_SCIENCES)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//        if (!learningMethods.contains(LearningMethod.VERBAL)) {
+//                learningMethods.add(LearningMethod.VERBAL);
+//            }
+//            if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
+//                learningMethods.add(LearningMethod.GROUP_LEARNING);
+//            }
+//        modify($student) {
+//            setLearningMethodsBasedOnField(LearningMethod.GROUP_LEARNING)
+//        }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
+//
+//rule "recommend learning methods for field - MEDICAL SCIENCES"
+//when
+//    $student: Student(field == Field.MEDICAL_SCIENCES)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//        if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+//                learningMethods.add(LearningMethod.KINESTHETIC);
+//            }
+//            if (!learningMethods.contains(LearningMethod.AUDIO_VISUAL)) {
+//                learningMethods.add(LearningMethod.AUDIO_VISUAL);
+//            }
+//        modify($student) {
+//            setLearningMethodsBasedOnField(LearningMethod.KINESTHETIC),
+//            setLearningMethodsBasedOnField(LearningMethod.AUDIO_VISUAL)
+//        }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
+//
 rule "recommend learning methods for field - ARTS"
 when
     $student: Student(field == Field.ARTS)
 then
     ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
-        if (!learningMethodsBasedOnField.contains(LearningMethod.VISUAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.VISUAL);
+        if (!learningMethods.contains(LearningMethod.VISUAL)) {
+                learningMethods.add(LearningMethod.VISUAL);
             }
-            if (!learningMethodsBasedOnField.contains(LearningMethod.AUDIO_VISUAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.AUDIO_VISUAL);
+            if (!learningMethods.contains(LearningMethod.AUDIO_VISUAL)) {
+                learningMethods.add(LearningMethod.AUDIO_VISUAL);
             }
         modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
+            setLearningMethodsBasedOnField(LearningMethod.VISUAL),
+            setLearningMethodsBasedOnField(LearningMethod.AUDIO_VISUAL)
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
-
-
-rule "recommend learning methods for field - LANGUAGES"
-when
-    $student: Student(field == Field.LANGUAGES)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
-        if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.VERBAL);
-            }
-            if (!learningMethodsBasedOnField.contains(LearningMethod.AUDITORY)) {
-                learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
-            }
-        modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
-        }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-
-rule "recommend learning methods for field - TECHNICAL SCIENCES"
-when
-    $student: Student(field == Field.TECHNICAL_SCIENCES)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
-        if (!learningMethodsBasedOnField.contains(LearningMethod.KINESTHETIC)) {
-                learningMethodsBasedOnField.add(LearningMethod.KINESTHETIC);
-            }
-            if (!learningMethodsBasedOnField.contains(LearningMethod.VISUAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.VISUAL);
-            }
-            if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
-                learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
-            }
-        modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
-        }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-rule "recommend learning methods for field - LECAL ECONOMIC SCIENCES"
-when
-    $student: Student(field == Field.LECAL_ECONOMIC_SCIENCES)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
-        if (!learningMethodsBasedOnField.contains(LearningMethod.AUDITORY)) {
-                learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
-            }
-            if (!learningMethodsBasedOnField.contains(LearningMethod.VISUAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.VISUAL);
-            }
-            if (!learningMethodsBasedOnField.contains(LearningMethod.LOGICAL_MATHEMATICAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.LOGICAL_MATHEMATICAL);
-            }
-        modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
-        }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-
-rule "recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES"
-when
-    $student: Student(field == Field.ARGICULTURE_ENVIRONMENTAL_SCIENCES)
-then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
-        if (!learningMethodsBasedOnField.contains(LearningMethod.AUDIO_VISUAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.AUDIO_VISUAL);
-            }
-            if (!learningMethodsBasedOnField.contains(LearningMethod.VISUAL)) {
-                learningMethodsBasedOnField.add(LearningMethod.VISUAL);
-            }
-        modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
-        }
-    System.out.println("Izmenjeni objekat studenta: " + $student);
-end
-
-//query isContainedIn( String x, String y )
-//  Location( x, y; )
-//  or
-//  ( Location( z, y; ) and isContainedIn( x, z; ) )
+//
+//
+//rule "recommend learning methods for field - LANGUAGES"
+//when
+//    $student: Student(field == Field.LANGUAGES)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//        if (!learningMethods.contains(LearningMethod.VERBAL)) {
+//                learningMethods.add(LearningMethod.VERBAL);
+//            }
+//            if (!learningMethods.contains(LearningMethod.AUDITORY)) {
+//                learningMethods.add(LearningMethod.AUDITORY);
+//            }
+//        modify($student) {
+//            setLearningMethodsBasedOnField(LearningMethod.AUDITORY),
+//            setLearningMethodsBasedOnField(LearningMethod.VERBAL)
+//        }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
 //end
-
-rule "go" salience 10
-when
-    $s : String(  )
-then
-    System.out.println( $s );
-end
-
-
-rule "go1"
-when
-    String( this == "go1" )
-//    isContainedIn("Office", "House"; )
-then
-    System.out.println( "office is inhousee" );
-end
-
+//
+//rule "recommend learning methods for field - TECHNICAL SCIENCES"
+//when
+//    $student: Student(field == Field.TECHNICAL_SCIENCES)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//        if (!learningMethods.contains(LearningMethod.VISUAL)) {
+//                learningMethods.add(LearningMethod.VISUAL);
+//            }
+//            if (!learningMethods.contains(LearningMethod.KINESTHETIC)) {
+//                learningMethods.add(LearningMethod.KINESTHETIC);
+//            }
+//            if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
+//                learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
+//            }
+//        modify($student) {
+//            setLearningMethodsBasedOnField(LearningMethod.VISUAL),
+//            setLearningMethodsBasedOnField(LearningMethod.KINESTHETIC),
+//            setLearningMethodsBasedOnField(LearningMethod.GROUP_LEARNING)
+//        }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
+//
+//
+//rule "recommend learning methods for field - LECAL ECONOMIC SCIENCES"
+//when
+//    $student: Student(field == Field.LECAL_ECONOMIC_SCIENCES)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//        if (!learningMethods.contains(LearningMethod.VISUAL)) {
+//                learningMethods.add(LearningMethod.VISUAL);
+//            }
+//            if (!learningMethods.contains(LearningMethod.AUDITORY)) {
+//                learningMethods.add(LearningMethod.AUDITORY);
+//            }
+//            if (!learningMethods.contains(LearningMethod.LOGICAL_MATHEMATICAL)) {
+//                learningMethods.add(LearningMethod.LOGICAL_MATHEMATICAL);
+//            }
+//        modify($student) {
+//            setLearningMethodsBasedOnField(LearningMethod.AUDITORY),
+//            setLearningMethodsBasedOnField(LearningMethod.VISUAL),
+//            setLearningMethodsBasedOnField(LearningMethod.LOGICAL_MATHEMATICAL)
+//        }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
+//
+//rule "recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES"
+//when
+//    $student: Student(field == Field.ARGICULTURE_ENVIRONMENTAL_SCIENCES)
+//then
+//    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+//        if (!learningMethods.contains(LearningMethod.VISUAL)) {
+//                learningMethods.add(LearningMethod.VISUAL);
+//            }
+//            if (!learningMethods.contains(LearningMethod.AUDIO_VISUAL)) {
+//                learningMethods.add(LearningMethod.AUDIO_VISUAL);
+//            }
+//        modify($student) {
+//            setLearningMethodsBasedOnField(LearningMethod.VISUAL),
+//            setLearningMethodsBasedOnField(LearningMethod.AUDIO_VISUAL)
+//        }
+//    System.out.println("Izmenjeni objekat studenta: " + $student);
+//end
