@@ -21,6 +21,11 @@ public class ActivateBackwardRulesService {
 
   public void fireRules() {
     KieSession kSession = kieContainer.newKieSession();
+
+    // kSession.insert("say hey");
+    // int fir = kSession.fireAllRules();
+    // System.out.println("fir " + fir);
+
     kSession.insert(new Location("Office", "House"));
     kSession.insert(new Location("Kitchen", "House"));
     kSession.insert(new Location("Knife", "Kitchen"));
@@ -67,16 +72,16 @@ public class ActivateBackwardRulesService {
 
 
     List<Subject> subjects1 = new ArrayList<>();
-    // Subject sub1 = new Subject(1, "matematika", SubjectName.MATHS);
-    // Subject sub2 = new Subject(2, "fizika", SubjectName.PHYSICS);
-    // kSession.insert(sub1);
-    // kSession.insert(sub2);
-    // subjects1.add(sub1);
-    // subjects1.add(sub2);
+    Subject sub1 = new Subject(1, "matematika", SubjectName.MATHS);
+    Subject sub2 = new Subject(2, "fizika", SubjectName.PHYSICS);
+    kSession.insert(sub1);
+    kSession.insert(sub2);
+    subjects1.add(sub1);
+    subjects1.add(sub2);
     // subjects1.add(new Subject(1, "matematika", SubjectName.MATHS));
     // subjects1.add(new Subject(2, "fizika", SubjectName.PHYSICS));
-    subjects1.add(new Subject(1, "za sta je ovaj string",  SubjectName.MATHS));
-    subjects1.add(new Subject(2, "za sta je ovaj string", SubjectName.PHYSICS));
+    // subjects1.add(new Subject(1, "za sta je ovaj string",  SubjectName.MATHS));
+    // subjects1.add(new Subject(2, "za sta je ovaj string", SubjectName.PHYSICS));
     List<PersonalityTrait> personalityTraits1 = new ArrayList<>();
     personalityTraits1.add(PersonalityTrait.CREATIVE);
     personalityTraits1.add(PersonalityTrait.EXTROVERTED);

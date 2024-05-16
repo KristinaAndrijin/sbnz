@@ -8,6 +8,7 @@ import com.ftn.sbnz.backward.service.services.*;
 import java.util.List
 import java.util.ArrayList;
 
+
 rule "personality traits empty"
 when
     String( this == "personality traits empty" )
@@ -46,8 +47,7 @@ then
     } 
 
     modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
+        setLearningMethodsBasedOnTraits(learningMethods);
     }
 
     System.out.println("Izmenjeni objekat studenta: " + $student);
@@ -68,8 +68,7 @@ then
         learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
     }
     modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
+        setLearningMethodsBasedOnTraits(learningMethods);
     }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -89,8 +88,7 @@ then
         learningMethods.add(LearningMethod.GROUP_LEARNING);
     }
     modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
+        setLearningMethodsBasedOnTraits(learningMethods);
     }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -110,8 +108,7 @@ then
         learningMethods.add(LearningMethod.KINESTHETIC);
     }
     modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
+        setLearningMethodsBasedOnTraits(learningMethods);
     }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -132,8 +129,7 @@ then
         learningMethods.add(LearningMethod.LEARNING_THROUGH_PLAY);
     }
     modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
+        setLearningMethodsBasedOnTraits(learningMethods);
     }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -154,8 +150,7 @@ then
         learningMethods.add(LearningMethod.GROUP_LEARNING);
     }
     modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
+        setLearningMethodsBasedOnTraits(learningMethods);
     }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -173,8 +168,7 @@ then
         learningMethods.add(LearningMethod.KINESTHETIC);
     }
     modify($student) {
-        for (LearningMethod lm : learningMethods)
-        setLearningMethodsBasedOnTraits(lm);
+        setLearningMethodsBasedOnTraits(learningMethods);
     }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -183,7 +177,7 @@ rule "recommend learning methods for field - NATURAL SCIENCES"
 when
     $student: Student(field == Field.NATURAL_SCIENCES)
 then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+    ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
         if (!learningMethodsBasedOnField.contains(LearningMethod.AUDITORY)) {
                 learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
             }
@@ -191,8 +185,7 @@ then
                 learningMethodsBasedOnField.add(LearningMethod.VERBAL);
             }
         modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
+            setLearningMethodsBasedOnField(learningMethodsBasedOnField);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -202,7 +195,7 @@ rule "recommend learning methods for field - SOCIAL SCIENCES"
 when
     $student: Student(field == Field.SOCIAL_SCIENCES)
 then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+    ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
         if (!learningMethodsBasedOnField.contains(LearningMethod.GROUP_LEARNING)) {
                 learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
             }
@@ -210,8 +203,7 @@ then
                 learningMethodsBasedOnField.add(LearningMethod.VERBAL);
             }
         modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
+            setLearningMethodsBasedOnField(learningMethodsBasedOnField);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -220,7 +212,7 @@ rule "recommend learning methods for field - MEDICAL SCIENCES"
 when
     $student: Student(field == Field.MEDICAL_SCIENCES)
 then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+    ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
         if (!learningMethodsBasedOnField.contains(LearningMethod.KINESTHETIC)) {
                 learningMethodsBasedOnField.add(LearningMethod.KINESTHETIC);
             }
@@ -228,8 +220,7 @@ then
                 learningMethodsBasedOnField.add(LearningMethod.AUDIO_VISUAL);
             }
         modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
+            setLearningMethodsBasedOnField(learningMethodsBasedOnField);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -238,7 +229,7 @@ rule "recommend learning methods for field - ARTS"
 when
     $student: Student(field == Field.ARTS)
 then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+    ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
         if (!learningMethodsBasedOnField.contains(LearningMethod.VISUAL)) {
                 learningMethodsBasedOnField.add(LearningMethod.VISUAL);
             }
@@ -246,8 +237,7 @@ then
                 learningMethodsBasedOnField.add(LearningMethod.AUDIO_VISUAL);
             }
         modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
+            setLearningMethodsBasedOnField(learningMethodsBasedOnField);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -257,7 +247,7 @@ rule "recommend learning methods for field - LANGUAGES"
 when
     $student: Student(field == Field.LANGUAGES)
 then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+    ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
         if (!learningMethodsBasedOnField.contains(LearningMethod.VERBAL)) {
                 learningMethodsBasedOnField.add(LearningMethod.VERBAL);
             }
@@ -265,8 +255,7 @@ then
                 learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
             }
         modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
+            setLearningMethodsBasedOnField(learningMethodsBasedOnField);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -276,7 +265,7 @@ rule "recommend learning methods for field - TECHNICAL SCIENCES"
 when
     $student: Student(field == Field.TECHNICAL_SCIENCES)
 then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+    ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
         if (!learningMethodsBasedOnField.contains(LearningMethod.KINESTHETIC)) {
                 learningMethodsBasedOnField.add(LearningMethod.KINESTHETIC);
             }
@@ -287,8 +276,7 @@ then
                 learningMethodsBasedOnField.add(LearningMethod.GROUP_LEARNING);
             }
         modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
+            setLearningMethodsBasedOnField(learningMethodsBasedOnField);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -297,7 +285,7 @@ rule "recommend learning methods for field - LECAL ECONOMIC SCIENCES"
 when
     $student: Student(field == Field.LECAL_ECONOMIC_SCIENCES)
 then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+    ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
         if (!learningMethodsBasedOnField.contains(LearningMethod.AUDITORY)) {
                 learningMethodsBasedOnField.add(LearningMethod.AUDITORY);
             }
@@ -308,8 +296,7 @@ then
                 learningMethodsBasedOnField.add(LearningMethod.LOGICAL_MATHEMATICAL);
             }
         modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
+            setLearningMethodsBasedOnField(learningMethodsBasedOnField);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -319,7 +306,7 @@ rule "recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES"
 when
     $student: Student(field == Field.ARGICULTURE_ENVIRONMENTAL_SCIENCES)
 then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
+    ArrayList<LearningMethod> learningMethodsBasedOnField = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnField());
         if (!learningMethodsBasedOnField.contains(LearningMethod.AUDIO_VISUAL)) {
                 learningMethodsBasedOnField.add(LearningMethod.AUDIO_VISUAL);
             }
@@ -327,8 +314,7 @@ then
                 learningMethodsBasedOnField.add(LearningMethod.VISUAL);
             }
         modify($student) {
-            for (LearningMethod lm : learningMethods)
-            setLearningMethodsBasedOnField(lm);
+            setLearningMethodsBasedOnField(learningMethodsBasedOnField);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end

@@ -193,8 +193,10 @@ public class Student {
     }
 
 
-    public void setLearningMethodsBasedOnTraits(LearningMethod lm) {
-        this.learningMethodsBasedOnTraits.add(lm);
+    public void setLearningMethodsBasedOnTraits(List<LearningMethod> lms) {
+        for (LearningMethod lm : lms) {
+            this.learningMethodsBasedOnTraits.add(lm);
+        }
     }
 
 
@@ -203,8 +205,10 @@ public class Student {
     }
 
 
-    public void setLearningMethodsBasedOnField(LearningMethod lm) {
-        this.learningMethodsBasedOnField.add(lm);
+    public void setLearningMethodsBasedOnField(List<LearningMethod> lms) {
+        for (LearningMethod lm : lms) {
+            this.learningMethodsBasedOnField.add(lm);
+        }
     }
 
 
@@ -214,8 +218,10 @@ public class Student {
 
 
 
-    public void setLearningMethodsBasedOnSubjectName(LearningMethod lm) {
-        this.learningMethodsBasedOnSubjectName.add(lm);
+    public void setLearningMethodsBasedOnSubjectName(List<LearningMethod> lms) {
+        for (LearningMethod lm : lms) {
+            this.learningMethodsBasedOnSubjectName.add(lm);
+        }
     }
 
 
@@ -284,8 +290,12 @@ public class Student {
     public String toString() {
         return "Student [id=" + id + ", name=" + name + ", surname=" + surname + ", subjects=" + subjects
                 + ", learningMethods=" + learningMethods + ", personalityTraits=" + personalityTraits
-                + ", personalizedPlan=" + personalizedPlan + "]";
+                + ", personalizedPlan=" + personalizedPlan + ", field=" + field + ", learningMethodsBasedOnTraits="
+                + learningMethodsBasedOnTraits + ", learningMethodsBasedOnField=" + learningMethodsBasedOnField
+                + ", learningMethodsBasedOnSubjectName=" + learningMethodsBasedOnSubjectName + "]";
     }
+
+    
 
     
 }
