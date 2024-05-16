@@ -470,7 +470,7 @@ end
 
 rule "create recommendation learning methods list"
 when
-    $student: Student(field == Field.TECHNICAL_SCIENCES, 
+    $student: Student(
                       learningMethodsBasedOnTraits != null, 
                       !learningMethodsBasedOnTraits.isEmpty(),
                       learningMethodsBasedOnField != null,
@@ -487,7 +487,6 @@ then
     modify($student) {
         setLearningMethods(commons);
     }
-
 
 end
 

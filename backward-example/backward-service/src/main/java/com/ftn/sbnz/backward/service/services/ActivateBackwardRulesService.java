@@ -85,6 +85,7 @@ public class ActivateBackwardRulesService {
     List<PersonalityTrait> personalityTraits1 = new ArrayList<>();
     personalityTraits1.add(PersonalityTrait.CREATIVE);
     personalityTraits1.add(PersonalityTrait.EXTROVERTED);
+    personalityTraits1.add(PersonalityTrait.ANALYTICAL);
     Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES);
     s1.setField(Field.NATURAL_SCIENCES);
 

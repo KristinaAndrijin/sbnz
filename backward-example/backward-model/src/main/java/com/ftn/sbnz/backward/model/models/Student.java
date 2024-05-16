@@ -165,6 +165,10 @@ public class Student {
         }
     }
 
+    public void emptyLearningMethods() {
+        this.learningMethods = new ArrayList<LearningMethod>();
+    }
+
     public List<PersonalityTrait> getPersonalityTraits() {
         return personalityTraits;
     }
@@ -201,6 +205,10 @@ public class Student {
         }
     }
 
+    public void emptyLearningMethodsBasedOnTraits() {
+        this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
+    }
+
 
     public List<LearningMethod> getLearningMethodsBasedOnField() {
         return learningMethodsBasedOnField;
@@ -213,17 +221,24 @@ public class Student {
         }
     }
 
+    public void emptyLearningMethodsBasedOnField() {
+        this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
+    }
+
 
     public List<LearningMethod> getLearningMethodsBasedOnSubjectName() {
         return learningMethodsBasedOnSubjectName;
     }
 
 
-
     public void setLearningMethodsBasedOnSubjectName(List<LearningMethod> lms) {
         for (LearningMethod lm : lms) {
             this.learningMethodsBasedOnSubjectName.add(lm);
         }
+    }
+
+    public void emptyLearningMethodsBasedOnSubjectName() {
+        this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
     }
 
 
