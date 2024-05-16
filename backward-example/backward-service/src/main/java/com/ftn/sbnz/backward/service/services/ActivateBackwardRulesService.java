@@ -105,6 +105,14 @@ public class ActivateBackwardRulesService {
     System.out.println(fired);
     System.out.println("---");
     kSession.insert("recommend learning methods for field - NATURAL SCIENCES");
+    kSession.insert("recommend learning methods for field - SOCIAL SCIENCES");
+    kSession.insert("recommend learning methods for field - MEDICAL SCIENCES");
+    kSession.insert("recommend learning methods for field - ARTS");
+    kSession.insert("recommend learning methods for field - LANGUAGES");
+    kSession.insert("recommend learning methods for field - TECHNICAL SCIENCES");
+    kSession.insert("recommend learning methods for field - LECAL ECONOMIC SCIENCES");
+    kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
+
     kSession.fireAllRules();
     System.out.println("---");
     System.out.println(s1);
