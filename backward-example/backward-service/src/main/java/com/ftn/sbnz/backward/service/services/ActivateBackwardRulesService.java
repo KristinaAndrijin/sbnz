@@ -32,8 +32,14 @@ public class ActivateBackwardRulesService {
 
 
     List<Subject> subjects1 = new ArrayList<>();
+<<<<<<< Updated upstream
     subjects1.add(new Subject(1, "matematika", SubjectName.MATHS));
     subjects1.add(new Subject(2, "fizika", SubjectName.PHYSICS));
+=======
+    subjects1.add(new Subject(1, "za sta je ovaj string",  SubjectName.MATHS));
+    subjects1.add(new Subject(2, "za sta je ovaj string", SubjectName.PHYSICS));
+    List<LearningMethod> learningMethods1 = new ArrayList<>();
+>>>>>>> Stashed changes
     List<PersonalityTrait> personalityTraits1 = new ArrayList<>();
     personalityTraits1.add(PersonalityTrait.CREATIVE);
     personalityTraits1.add(PersonalityTrait.EXTROVERTED);
@@ -45,13 +51,13 @@ public class ActivateBackwardRulesService {
     kSession.fireAllRules();
     System.out.println("---");
 
-    kSession.insert("personality traits analyse");
+    kSession.insert("recommend learning methods for field - NATURAL SCIENCES");
     kSession.fireAllRules();
     System.out.println("---");
 
-    kSession.insert("field analyse");
-    kSession.fireAllRules();
-    System.out.println("---");
+//    kSession.insert("field analyse");
+//    kSession.fireAllRules();
+//    System.out.println("---");
 
 
 
@@ -70,9 +76,9 @@ public class ActivateBackwardRulesService {
 //    } else {
 //      System.out.println("Pravilo 'backward' nije ispunjeno.");
 //    }
-      kSession.insert("go1");
-      kSession.fireAllRules();
-      System.out.println("---");
+//      kSession.insert("go1");
+//      kSession.fireAllRules();
+//      System.out.println("---");
 //
 //    kSession.insert( "go2" );
 //    kSession.fireAllRules();
