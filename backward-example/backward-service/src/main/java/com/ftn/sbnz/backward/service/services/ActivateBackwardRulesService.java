@@ -67,6 +67,7 @@ public class ActivateBackwardRulesService {
     kSession.insert("recommend learning methods for field - TECHNICAL SCIENCES");
     kSession.insert("recommend learning methods for field - LECAL ECONOMIC SCIENCES");
     kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
+
     kSession.fireAllRules();
     System.out.println("stundetttt" + s1);
 
