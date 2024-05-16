@@ -1,5 +1,7 @@
 package com.ftn.sbnz.backward.model.models;
 
+import java.sql.Date;
+
 import org.kie.api.definition.type.Position;
 
 public class Grade {
@@ -15,14 +17,18 @@ public class Grade {
     @Position(3)
     private Integer grade;
 
+    @Position(4)
+    private Date timestamp;
+
     public Grade() {
     }
 
-    public Grade(Integer id, Student studentId, Subject subjectId, Integer grade) {
+    public Grade(Integer id, Student studentId, Subject subjectId, Integer grade, Date timestamp) {
         this.id = id;
         this.studentId = studentId;
         this.subjectId = subjectId;
         this.grade = grade;
+        this.timestamp = timestamp;
     }
 
     public Integer getId() {
@@ -57,6 +63,14 @@ public class Grade {
         this.grade = grade;
     }
 
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -65,6 +79,7 @@ public class Grade {
         result = prime * result + ((studentId == null) ? 0 : studentId.hashCode());
         result = prime * result + ((subjectId == null) ? 0 : subjectId.hashCode());
         result = prime * result + ((grade == null) ? 0 : grade.hashCode());
+        result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
         return result;
     }
 
@@ -97,13 +112,21 @@ public class Grade {
                 return false;
         } else if (!grade.equals(other.grade))
             return false;
+        if (timestamp == null) {
+            if (other.timestamp != null)
+                return false;
+        } else if (!timestamp.equals(other.timestamp))
+            return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Grade [id=" + id + ", studentId=" + studentId + ", subjectId=" + subjectId + ", grade=" + grade + "]";
+        return "Grade [id=" + id + ", studentId=" + studentId + ", subjectId=" + subjectId + ", grade=" + grade
+                + ", timestamp=" + timestamp + "]";
     }
+
+    
 
     
 }
