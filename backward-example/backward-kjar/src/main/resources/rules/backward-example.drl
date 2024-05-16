@@ -33,7 +33,7 @@ rule "recommend learning methods for personality trait - EXTROVERTED"
 when
     $student: Student(personalityTraits contains PersonalityTrait.EXTROVERTED)
 then
-    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethods());
+    ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethodsBasedOnTraits());
         if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
                 learningMethods.add(LearningMethod.GROUP_LEARNING);
             }
@@ -42,7 +42,7 @@ then
             }
         modify($student) {
             for (LearningMethod lm : learningMethods)
-            setLearningMethods(lm);
+            setLearningMethodsBasedOnTraits(lm);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end

@@ -42,13 +42,39 @@ public class Student {
     public Student() {
     }
 
+    public Student(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+        this.learningMethods = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+    }
+
 
     public Student(Integer id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.learningMethods = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
     }
 
+
+    public Student(String name, String surname, List<Subject> subjects, List<PersonalityTrait> personalityTraits,
+            Field field) {
+        this.name = name;
+        this.surname = surname;
+        this.subjects = subjects;
+        this.personalityTraits = personalityTraits;
+        this.field = field;
+        this.learningMethods = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+    }
 
 
     public Student(Integer id, String name, String surname, List<Subject> subjects,
@@ -59,6 +85,9 @@ public class Student {
         this.surname = surname;
         this.subjects = subjects;
         this.learningMethods = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
         this.personalityTraits = personalityTraits;
         this.personalizedPlan = personalizedPlan;
     }
