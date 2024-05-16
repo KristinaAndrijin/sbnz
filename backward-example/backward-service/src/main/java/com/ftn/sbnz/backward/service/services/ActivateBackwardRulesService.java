@@ -67,16 +67,20 @@ public class ActivateBackwardRulesService {
 
 
     List<Subject> subjects1 = new ArrayList<>();
-    Subject sub1 = new Subject(1, "matematika", SubjectName.MATHS);
-    Subject sub2 = new Subject(2, "fizika", SubjectName.PHYSICS);
-    kSession.insert(sub1);
-    kSession.insert(sub2);
-    subjects1.add(sub1);
-    subjects1.add(sub2);
+    // Subject sub1 = new Subject(1, "matematika", SubjectName.MATHS);
+    // Subject sub2 = new Subject(2, "fizika", SubjectName.PHYSICS);
+    // kSession.insert(sub1);
+    // kSession.insert(sub2);
+    // subjects1.add(sub1);
+    // subjects1.add(sub2);
+    // subjects1.add(new Subject(1, "matematika", SubjectName.MATHS));
+    // subjects1.add(new Subject(2, "fizika", SubjectName.PHYSICS));
+    subjects1.add(new Subject(1, "za sta je ovaj string",  SubjectName.MATHS));
+    subjects1.add(new Subject(2, "za sta je ovaj string", SubjectName.PHYSICS));
     List<PersonalityTrait> personalityTraits1 = new ArrayList<>();
     personalityTraits1.add(PersonalityTrait.CREATIVE);
     personalityTraits1.add(PersonalityTrait.EXTROVERTED);
-    Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.ARGICULTURE_ENVIRONMENTAL_SCIENCES);
+    Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES);
     s1.setField(Field.NATURAL_SCIENCES);
 
     kSession.insert(s1);
@@ -95,6 +99,14 @@ public class ActivateBackwardRulesService {
     System.out.println("preporuceni metodi " + s1.getLearningMethodsBasedOnTraits());
     System.out.println(fired);
     System.out.println("---");
+    kSession.insert("recommend learning methods for field - NATURAL SCIENCES");
+    kSession.fireAllRules();
+    System.out.println("---");
+    System.out.println(s1);
+
+//    kSession.insert("field analyse");
+//    kSession.fireAllRules();
+//    System.out.println("---");
 
 
 
@@ -116,6 +128,9 @@ public class ActivateBackwardRulesService {
       // kSession.insert("go1");
       // kSession.fireAllRules();
       // System.out.println("---");
+//      kSession.insert("go1");
+//      kSession.fireAllRules();
+//      System.out.println("---");
 //
 //    kSession.insert( "go2" );
 //    kSession.fireAllRules();
