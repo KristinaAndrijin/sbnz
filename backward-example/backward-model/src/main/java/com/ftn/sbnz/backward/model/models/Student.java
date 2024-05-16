@@ -1,6 +1,8 @@
 package com.ftn.sbnz.backward.model.models;
 
 import org.kie.api.definition.type.Position;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
@@ -46,7 +48,7 @@ public class Student {
         this.name = name;
         this.surname = surname;
         this.subjects = subjects;
-        this.learningMethods = learningMethods;
+        this.learningMethods = new ArrayList<LearningMethod>();
         this.personalityTraits = personalityTraits;
         this.personalizedPlan = personalizedPlan;
     }
@@ -87,8 +89,8 @@ public class Student {
         return learningMethods;
     }
 
-    public void setLearningMethods(List<LearningMethod> learningMethods) {
-        this.learningMethods = learningMethods;
+    public void setLearningMethods(LearningMethod lm) {
+        this.learningMethods.add(lm);
     }
 
     public List<PersonalityTrait> getPersonalityTraits() {

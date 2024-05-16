@@ -4,6 +4,7 @@ import com.ftn.sbnz.backward.model.models.Location;
 import com.ftn.sbnz.backward.model.models.Student;
 import com.ftn.sbnz.backward.model.models.PersonalityTrait
 import com.ftn.sbnz.backward.model.models.*;
+import com.ftn.sbnz.backward.service.services.*;
 import java.util.List
 import java.util.ArrayList;
 
@@ -28,10 +29,11 @@ end
 //end
 
 
-rule "personality traits analyse"
+rule "recommend learning methods for personality trait"
 when
     $student: Student(personalityTraits contains PersonalityTrait.EXTROVERTED)
 then
+    ArrayListArrayList<LearningMethod> learningMethods = Recom
     ArrayList<LearningMethod> learningMethods = new ArrayList<LearningMethod>($student.getLearningMethods());
         if (!learningMethods.contains(LearningMethod.GROUP_LEARNING)) {
                 learningMethods.add(LearningMethod.GROUP_LEARNING);
@@ -40,7 +42,8 @@ then
                 learningMethods.add(LearningMethod.VERBAL);
             }
         modify($student) {
-            setLearningMethods(learningMethods)
+            for (LearningMethod lm : learningMethods)
+            setLearningMethods(lm);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
@@ -57,7 +60,8 @@ then
                 learningMethods.add(LearningMethod.VERBAL);
             }
         modify($student) {
-            setLearningMethods(learningMethods)
+            for (LearningMethod lm : learningMethods)
+            setLearningMethods(lm);
         }
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
