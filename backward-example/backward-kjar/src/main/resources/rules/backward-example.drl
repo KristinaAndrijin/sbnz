@@ -29,7 +29,7 @@ end
 //end
 
 
-rule "recommend learning methods for personality trait"
+rule "recommend learning methods for personality trait - EXTROVERTED"
 when
     $student: Student(personalityTraits contains PersonalityTrait.EXTROVERTED)
 then
@@ -47,7 +47,8 @@ then
     System.out.println("Izmenjeni objekat studenta: " + $student);
 end
 
-rule "field analyse"
+
+rule "recommend learning methods for field - NATURAL SCIENCES"
 when
     $student: Student(field == Field.NATURAL_SCIENCES)
 then
