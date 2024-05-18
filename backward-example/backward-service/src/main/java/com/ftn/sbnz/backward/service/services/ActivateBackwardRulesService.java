@@ -91,36 +91,51 @@ public class ActivateBackwardRulesService {
 
     kSession.insert(s1);
 
-    kSession.insert("personality traits empty");
-    kSession.insert("recommend learning methods for personality trait - EXTROVERTED");
-    kSession.insert("recommend learning methods for personality trait - INTROVERTED");
-    kSession.insert("recommend learning methods for personality trait - ANALYTICAL");
-    kSession.insert("recommend learning methods for personality trait - CREATIVE");
-    kSession.insert("recommend learning methods for personality trait - PRACTICAL");
-    kSession.insert("recommend learning methods for personality trait - ORGANIZED");
-    kSession.insert("recommend learning methods for personality trait - REFLECTIVE");
+    // System.out.println("---Personality trait rules---");
+    // kSession.insert("personality traits empty");
+    // kSession.insert("recommend learning methods for personality trait - EXTROVERTED");
+    // kSession.insert("recommend learning methods for personality trait - INTROVERTED");
+    // kSession.insert("recommend learning methods for personality trait - ANALYTICAL");
+    // kSession.insert("recommend learning methods for personality trait - CREATIVE");
+    // kSession.insert("recommend learning methods for personality trait - PRACTICAL");
+    // kSession.insert("recommend learning methods for personality trait - ORGANIZED");
+    // kSession.insert("recommend learning methods for personality trait - REFLECTIVE");
+    // System.out.println("---");
+
+    // // int fired = kSession.fireAllRules();
+    // // System.out.println(fired);
+
+    // System.out.println("---Field rules---");
+    // kSession.insert("recommend learning methods for field - NATURAL SCIENCES");
+    // kSession.insert("recommend learning methods for field - SOCIAL SCIENCES");
+    // kSession.insert("recommend learning methods for field - MEDICAL SCIENCES");
+    // kSession.insert("recommend learning methods for field - ARTS");
+    // kSession.insert("recommend learning methods for field - LANGUAGES");
+    // kSession.insert("recommend learning methods for field - TECHNICAL SCIENCES");
+    // kSession.insert("recommend learning methods for field - LECAL ECONOMIC SCIENCES");
+    // kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
+    // System.out.println("---");
+
+    System.out.println("---Subject name rules---");
+    // kSession.insert("recommend learning methods for subject - PHYSICS");
+    // kSession.insert("recommend learning methods for field - SOCIAL SCIENCES");
+    // kSession.insert("recommend learning methods for field - MEDICAL SCIENCES");
+    // kSession.insert("recommend learning methods for field - ARTS");
+    // kSession.insert("recommend learning methods for field - LANGUAGES");
+    // kSession.insert("recommend learning methods for field - TECHNICAL SCIENCES");
+    // kSession.insert("recommend learning methods for field - LECAL ECONOMIC SCIENCES");
+    // kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
+    System.out.println("---");
 
     int fired = kSession.fireAllRules();
-    System.out.println("---Personality trait rules---");
-    System.out.println("preporuceni metodi " + s1.getLearningMethodsBasedOnTraits());
     System.out.println(fired);
     System.out.println("---");
-    kSession.insert("recommend learning methods for field - NATURAL SCIENCES");
-    kSession.insert("recommend learning methods for field - SOCIAL SCIENCES");
-    kSession.insert("recommend learning methods for field - MEDICAL SCIENCES");
-    kSession.insert("recommend learning methods for field - ARTS");
-    kSession.insert("recommend learning methods for field - LANGUAGES");
-    kSession.insert("recommend learning methods for field - TECHNICAL SCIENCES");
-    kSession.insert("recommend learning methods for field - LECAL ECONOMIC SCIENCES");
-    kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
-
-    kSession.fireAllRules();
-    System.out.println("---");
-    System.out.println(s1);
     System.out.println("----------------------final--------------------------------");
-    kSession.insert("create recommendation learning methods list");
-    kSession.fireAllRules();
+    // s1.setLearningMethodsUpdated(false);
     System.out.println(s1);
+    // kSession.insert("create recommendation learning methods list");
+    // kSession.fireAllRules();
+    // System.out.println(s1);
 
 //    kSession.insert("field analyse");
 //    kSession.fireAllRules();

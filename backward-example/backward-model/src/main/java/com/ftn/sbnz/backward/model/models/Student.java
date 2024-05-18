@@ -38,6 +38,9 @@ public class Student {
     @Position(10)
     private List<LearningMethod> learningMethodsBasedOnSubjectName;
 
+    @Position(11)
+    private boolean learningMethodsUpdated;
+
 
     public Student() {
     }
@@ -49,6 +52,7 @@ public class Student {
         this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+        this.learningMethodsUpdated = false;
     }
 
 
@@ -60,6 +64,7 @@ public class Student {
         this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+        this.learningMethodsUpdated = false;
     }
 
 
@@ -74,6 +79,7 @@ public class Student {
         this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+        this.learningMethodsUpdated = false;
     }
 
     public Student(int id, String name, String surname, List<Subject> subjects, List<PersonalityTrait> personalityTraits,
@@ -88,6 +94,7 @@ public class Student {
         this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+        this.learningMethodsUpdated = false;
     }
 
 
@@ -104,6 +111,7 @@ public class Student {
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
         this.personalityTraits = personalityTraits;
         this.personalizedPlan = personalizedPlan;
+        this.learningMethodsUpdated = false;
     }
 
     public Student(Integer id, String name, String surname, List<Subject> subjects,
@@ -121,6 +129,7 @@ public class Student {
         this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+        this.learningMethodsUpdated = false;
     }
 
     public Integer getId() {
@@ -239,6 +248,14 @@ public class Student {
 
     public void emptyLearningMethodsBasedOnSubjectName() {
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+    }
+
+    public boolean isLearningMethodsUpdated() {
+        return learningMethodsUpdated;
+    }
+
+    public void setLearningMethodsUpdated(boolean learningMethodsUpdated) {
+        this.learningMethodsUpdated = learningMethodsUpdated;
     }
 
 
