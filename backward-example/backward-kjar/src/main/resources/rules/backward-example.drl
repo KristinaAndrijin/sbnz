@@ -2,6 +2,16 @@ package rules;
 
 import com.ftn.sbnz.backward.model.models.*;
 
+
+// rule "personality traits empty"
+// when
+//     String( this == "personality traits empty" )
+//     $student: Student($id: id)
+//         eval($student.getPersonalityTraits() == null || $student.getPersonalityTraits().isEmpty())
+// then
+//     System.out.println("Lista personalityTraits je prazna za studenta: " + $id);
+// end
+
 query isConnectedWith( String x, String y )
   Connected( x, y; )
   or
