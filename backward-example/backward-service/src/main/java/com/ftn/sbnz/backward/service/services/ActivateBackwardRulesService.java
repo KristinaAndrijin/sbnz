@@ -78,10 +78,6 @@ public class ActivateBackwardRulesService {
     kSession.insert(sub2);
     subjects1.add(sub1);
     subjects1.add(sub2);
-    // subjects1.add(new Subject(1, "matematika", SubjectName.MATHS));
-    // subjects1.add(new Subject(2, "fizika", SubjectName.PHYSICS));
-    // subjects1.add(new Subject(1, "za sta je ovaj string",  SubjectName.MATHS));
-    // subjects1.add(new Subject(2, "za sta je ovaj string", SubjectName.PHYSICS));
     List<PersonalityTrait> personalityTraits1 = new ArrayList<>();
     personalityTraits1.add(PersonalityTrait.CREATIVE);
     personalityTraits1.add(PersonalityTrait.EXTROVERTED);
@@ -133,56 +129,15 @@ public class ActivateBackwardRulesService {
     System.out.println("----------------------final--------------------------------");
     // s1.setLearningMethodsUpdated(false);
     System.out.println(s1);
-    // kSession.insert("create recommendation learning methods list");
+    // kSession.insert("create recommendation learning methods list based on subjects");
+    // kSession.insert("create recommendation learning methods list based on field");
     // kSession.fireAllRules();
     // System.out.println(s1);
-
-//    kSession.insert("field analyse");
-//    kSession.fireAllRules();
-//    System.out.println("---");
-
-
 
 //    kSession.insert("personality traits empty");
 //    kSession.fireAllRules();
 //    System.out.println("---");
-//
-//    kSession.insert("personality traits not empty");
-//    kSession.fireAllRules();
-//    System.out.println("---");
 
-//    QueryResults results = kSession.getQueryResults("personality traits empty");
-//    if (results.size() > 0) {
-//      System.out.println("Pravilo 'backward' je ispunjeno.");
-//      // Možete dalje obraditi rezultate ili izvršiti neke akcije ako je pravilo ispunjeno
-//    } else {
-//      System.out.println("Pravilo 'backward' nije ispunjeno.");
-//    }
-      // kSession.insert("go1");
-      // kSession.fireAllRules();
-      // System.out.println("---");
-//      kSession.insert("go1");
-//      kSession.fireAllRules();
-//      System.out.println("---");
-//
-//    kSession.insert( "go2" );
-//    kSession.fireAllRules();
-//    System.out.println("---");
-//
-//    kSession.insert( "go3" );
-//    kSession.fireAllRules();
-//    System.out.println("---");
-//
-//    kSession.insert( new Location("Key", "Draw") );
-//    kSession.fireAllRules();
-//    System.out.println("---");
-//
-//    kSession.insert( "go4" );
-//    kSession.fireAllRules();
-//    System.out.println("---");
-//
-//    kSession.insert( "go5" );
-//    kSession.fireAllRules();
     }
   }
 

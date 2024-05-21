@@ -487,25 +487,3 @@ then
         setLearningMethods2Updated(true);
     }
 end
-
-//query isContainedIn( String x, String y )
-//  Location( x, y; )
-//  or
-//  ( Location( z, y; ) and isContainedIn( x, z; ) )
-//end
-
-// rule "go" salience 10
-// when
-//     $s : String(  )
-// then
-//     System.out.println( $s );
-// end
-
-
-// rule "go1"
-// when
-//     String( this == "go1" )
-// //    isContainedIn("Office", "House"; )
-// then
-//     System.out.println( "office is inhousee" );
-// end
