@@ -11,16 +11,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-// rule "personality traits empty"
-// when
-//     String( this == "personality traits empty" )
-//     $student: Student($id: id)
-//         eval($student.getPersonalityTraits() == null || $student.getPersonalityTraits().isEmpty())
-// then
-//     System.out.println("Lista personalityTraits je prazna za studenta: " + $id);
-// end
-
-
 rule "recommend learning methods for personality trait - EXTROVERTED"
 when
     $student: Student(personalityTraits contains PersonalityTrait.EXTROVERTED)
