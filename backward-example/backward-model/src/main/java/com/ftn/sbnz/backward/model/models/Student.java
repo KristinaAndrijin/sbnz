@@ -40,6 +40,8 @@ public class Student {
 
     @Position(11)
     private boolean learningMethodsUpdated;
+    @Position(12)
+    private boolean learningMethodsUpdated2;
 
 
     public Student() {
@@ -53,6 +55,7 @@ public class Student {
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
         this.learningMethodsUpdated = false;
+        this.learningMethodsUpdated2 = false;
     }
 
 
@@ -65,6 +68,7 @@ public class Student {
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
         this.learningMethodsUpdated = false;
+        this.learningMethodsUpdated2 = false;
     }
 
 
@@ -80,6 +84,7 @@ public class Student {
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
         this.learningMethodsUpdated = false;
+        this.learningMethodsUpdated2 = false;
     }
 
     public Student(int id, String name, String surname, List<Subject> subjects, List<PersonalityTrait> personalityTraits,
@@ -95,6 +100,7 @@ public class Student {
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
         this.learningMethodsUpdated = false;
+        this.learningMethodsUpdated2 = false;
     }
 
 
@@ -112,6 +118,7 @@ public class Student {
         this.personalityTraits = personalityTraits;
         this.personalizedPlan = personalizedPlan;
         this.learningMethodsUpdated = false;
+        this.learningMethodsUpdated2 = false;
     }
 
     public Student(Integer id, String name, String surname, List<Subject> subjects,
@@ -130,6 +137,7 @@ public class Student {
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
         this.learningMethodsUpdated = false;
+        this.learningMethodsUpdated2 = false;
     }
 
     public Integer getId() {
@@ -256,6 +264,16 @@ public class Student {
 
     public void setLearningMethodsUpdated(boolean learningMethodsUpdated) {
         this.learningMethodsUpdated = learningMethodsUpdated;
+    }
+
+
+
+    public boolean isLearningMethodsUpdated2() {
+        return learningMethodsUpdated2;
+    }
+
+    public void setLearningMethods2Updated(boolean learningMethodsUpdated) {
+        this.learningMethodsUpdated2 = learningMethodsUpdated;
     }
 
 

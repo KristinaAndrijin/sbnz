@@ -448,16 +448,16 @@ then
 end
 
 
-rule "create recommendation learning methods list"
+rule "create recommendation learning methods list based on subjects"
 when
     $student: Student(learningMethodsUpdated == false,
-                      learningMethodsBasedOnTraits != null, 
+                      learningMethodsBasedOnTraits != null,
                       learningMethodsBasedOnTraits.isEmpty() == false,
                       learningMethodsBasedOnSubjectName != null,
                       learningMethodsBasedOnSubjectName.isEmpty() == false)
 then
     // List<LearningMethod> uniqueTraitsMethods = new ArrayList<>(new HashSet<>( $student.getLearningMethodsBasedOnTraits() ));
-    
+
     // List<LearningMethod> uniqueFieldMethods = new ArrayList<>(new HashSet<>( $student.getLearningMethodsBasedOnSubjectName() ));
 
     Set<LearningMethod> commonMethods = new HashSet<>( $student.getLearningMethodsBasedOnTraits() );
@@ -468,7 +468,24 @@ then
         setLearningMethods(commons),
         setLearningMethodsUpdated(true);
     }
+end
 
+
+rule "create recommendation learning methods list based on field"
+when
+    $student: Student(learningMethodsUpdated2 == false,
+                      learningMethodsBasedOnTraits != null,
+                      learningMethodsBasedOnTraits.isEmpty() == false,
+                      learningMethodsBasedOnField != null,
+                      learningMethodsBasedOnField.isEmpty() == false)
+then
+    Set<LearningMethod> commonMethods = new HashSet<>( $student.getLearningMethodsBasedOnTraits() );
+    commonMethods.retainAll( $student.getLearningMethodsBasedOnField() );
+    List<LearningMethod> commons = new ArrayList<LearningMethod>(commonMethods);
+    modify($student) {
+        setLearningMethods(commons),
+        setLearningMethods2Updated(true);
+    }
 end
 
 //query isContainedIn( String x, String y )
