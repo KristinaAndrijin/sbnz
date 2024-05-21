@@ -42,11 +42,11 @@ then
         }
     if (!learningMethods.contains(LearningMethod.AUDITORY)) {
         learningMethods.add(LearningMethod.VERBAL);
-    } 
+    }
 
     if (!learningMethods.contains(LearningMethod.VISUAL)) {
         learningMethods.add(LearningMethod.VISUAL);
-    } 
+    }
 
     modify($student) {
         setLearningMethodsBasedOnTraits(learningMethods);

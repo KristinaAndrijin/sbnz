@@ -35,41 +35,6 @@ public class ActivateBackwardRulesService {
     kSession.insert(new Location("Computer", "Desk"));
     kSession.insert(new Location("Draw", "Desk"));
 
-    kSession.insert(PersonalityTrait.EXTROVERTED);
-    kSession.insert(PersonalityTrait.INTROVERTED);
-    kSession.insert(PersonalityTrait.ANALYTICAL);
-    kSession.insert(PersonalityTrait.CREATIVE);
-    kSession.insert(PersonalityTrait.PRACTICAL);
-    kSession.insert(PersonalityTrait.ORGANIZED);
-    kSession.insert(PersonalityTrait.REFLECTIVE);
-
-    kSession.insert(LearningMethod.VERBAL);
-    kSession.insert(LearningMethod.AUDITORY);
-    kSession.insert(LearningMethod.VISUAL);
-    kSession.insert(LearningMethod.KINESTHETIC);
-    kSession.insert(LearningMethod.AUDIO_VISUAL);
-    kSession.insert(LearningMethod.GROUP_LEARNING);
-    kSession.insert(LearningMethod.LOGICAL_MATHEMATICAL);
-    kSession.insert(LearningMethod.LEARNING_THROUGH_PLAY);
-
-
-    kSession.insert(SubjectName.PHYSICS);
-    kSession.insert(SubjectName.HISTORY);
-    kSession.insert(SubjectName.ENGLISH);
-    kSession.insert(SubjectName.PROGRAMMING);
-    kSession.insert(SubjectName.MATHS);
-    kSession.insert(SubjectName.ARTS);
-
-    kSession.insert(Field.NATURAL_SCIENCES);
-    kSession.insert(Field.SOCIAL_SCIENCES);
-    kSession.insert(Field.MEDICAL_SCIENCES);
-    kSession.insert(Field.ARTS);
-    kSession.insert(Field.LANGUAGES);
-    kSession.insert(Field.TECHNICAL_SCIENCES);
-    kSession.insert(Field.LECAL_ECONOMIC_SCIENCES);
-    kSession.insert(Field.ARGICULTURE_ENVIRONMENTAL_SCIENCES);
-
-
 
     List<Subject> subjects1 = new ArrayList<>();
     Subject sub1 = new Subject(1, "matematika", SubjectName.MATHS);
@@ -82,28 +47,18 @@ public class ActivateBackwardRulesService {
     // subjects1.add(new Subject(2, "fizika", SubjectName.PHYSICS));
     // subjects1.add(new Subject(1, "za sta je ovaj string",  SubjectName.MATHS));
     // subjects1.add(new Subject(2, "za sta je ovaj string", SubjectName.PHYSICS));
+
     List<PersonalityTrait> personalityTraits1 = new ArrayList<>();
     personalityTraits1.add(PersonalityTrait.CREATIVE);
     personalityTraits1.add(PersonalityTrait.EXTROVERTED);
-    Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES);
-    s1.setField(Field.NATURAL_SCIENCES);
-
+    Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.ARTS);
+    s1.setField(Field.ARTS);
     kSession.insert(s1);
 
-    kSession.insert("personality traits empty");
-    kSession.insert("recommend learning methods for personality trait - EXTROVERTED");
-    kSession.insert("recommend learning methods for personality trait - INTROVERTED");
-    kSession.insert("recommend learning methods for personality trait - ANALYTICAL");
-    kSession.insert("recommend learning methods for personality trait - CREATIVE");
-    kSession.insert("recommend learning methods for personality trait - PRACTICAL");
-    kSession.insert("recommend learning methods for personality trait - ORGANIZED");
-    kSession.insert("recommend learning methods for personality trait - REFLECTIVE");
+//    kSession.insert("personality traits empty");
+//    kSession.fireAllRules();
+//    System.out.println("---");
 
-    int fired = kSession.fireAllRules();
-    System.out.println("---Personality trait rules---");
-    System.out.println("preporuceni metodi " + s1.getLearningMethodsBasedOnTraits());
-    System.out.println(fired);
-    System.out.println("---");
     kSession.insert("recommend learning methods for field - NATURAL SCIENCES");
     kSession.insert("recommend learning methods for field - SOCIAL SCIENCES");
     kSession.insert("recommend learning methods for field - MEDICAL SCIENCES");
@@ -120,6 +75,7 @@ public class ActivateBackwardRulesService {
     kSession.insert("create recommendation learning methods list");
     kSession.fireAllRules();
     System.out.println(s1);
+    System.out.println("stundetttt" + s1);
 
 //    kSession.insert("field analyse");
 //    kSession.fireAllRules();
@@ -142,9 +98,6 @@ public class ActivateBackwardRulesService {
 //    } else {
 //      System.out.println("Pravilo 'backward' nije ispunjeno.");
 //    }
-      // kSession.insert("go1");
-      // kSession.fireAllRules();
-      // System.out.println("---");
 //      kSession.insert("go1");
 //      kSession.fireAllRules();
 //      System.out.println("---");
