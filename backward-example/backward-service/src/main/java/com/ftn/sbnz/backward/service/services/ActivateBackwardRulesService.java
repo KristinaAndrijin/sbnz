@@ -3,7 +3,6 @@ package com.ftn.sbnz.backward.service.services;
 import com.ftn.sbnz.backward.model.models.*;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-import org.kie.api.runtime.rule.QueryResults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +51,6 @@ public class ActivateBackwardRulesService {
     kSession.insert(LearningMethod.LOGICAL_MATHEMATICAL);
     kSession.insert(LearningMethod.LEARNING_THROUGH_PLAY);
 
-
     kSession.insert(SubjectName.PHYSICS);
     kSession.insert(SubjectName.HISTORY);
     kSession.insert(SubjectName.ENGLISH);
@@ -68,8 +66,6 @@ public class ActivateBackwardRulesService {
     kSession.insert(Field.TECHNICAL_SCIENCES);
     kSession.insert(Field.LECAL_ECONOMIC_SCIENCES);
     kSession.insert(Field.ARGICULTURE_ENVIRONMENTAL_SCIENCES);
-
-
 
     List<Subject> subjects1 = new ArrayList<>();
     Subject sub1 = new Subject(1, "matematika", SubjectName.MATHS);
@@ -123,6 +119,25 @@ public class ActivateBackwardRulesService {
     // kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
     System.out.println("---");
 
+    kSession.insert(new Connected("ucenje u grupi", "fizika"));
+    kSession.insert(new Connected("auditivno", "istorija"));
+    kSession.insert(new Connected("vizuelno", "engleski"));
+    kSession.insert(new Connected("ucenje kroz igru", "programiranje"));
+    kSession.insert(new Connected("logicko_matematicko", "matematika"));
+    kSession.insert(new Connected("kinesteticko", "umetnost"));
+    kSession.insert(new Connected("verbalno", "fizika"));
+    kSession.insert(new Connected("audio_vizuelno", "istorija"));
+
+    kSession.insert(new Connected("fizika", "ekstrovert"));
+    kSession.insert(new Connected("istorija", "introvert"));
+    kSession.insert(new Connected( "engleski", "analiticar"));
+    kSession.insert(new Connected( "programiranje", "kreativna_licnost"));
+    kSession.insert(new Connected( "matematika", "prakticna_licnost"));
+    kSession.insert(new Connected( "umetnost", "organizovana_licnost"));
+    kSession.insert(new Connected( "programiranje", "ekstrovert"));
+    kSession.insert(new Connected( "matematika", "introvert"));
+
+    kSession.insert("backward");
     int fired = kSession.fireAllRules();
     System.out.println(fired);
     System.out.println("---");
@@ -137,7 +152,6 @@ public class ActivateBackwardRulesService {
 //    kSession.insert("personality traits empty");
 //    kSession.fireAllRules();
 //    System.out.println("---");
-
     }
   }
 

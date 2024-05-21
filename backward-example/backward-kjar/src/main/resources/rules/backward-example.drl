@@ -1,0 +1,17 @@
+package rules;
+
+import com.ftn.sbnz.backward.model.models.*;
+
+query isConnectedWith( String x, String y )
+  Connected( x, y; )
+  or
+  ( Connected( z, y; ) and isConnectedWith( x, z; ) )
+end
+
+rule "backward"
+when
+    String( this == "backward" )
+    isConnectedWith(x, y; )
+then
+    System.out.println( x + " is connected with "+ y );
+end
