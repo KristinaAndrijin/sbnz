@@ -1,16 +1,17 @@
 package rules;
 
 import com.ftn.sbnz.backward.model.models.*;
+import java.util.ArrayList;
 
 
-// rule "personality traits empty"
-// when
-//     String( this == "personality traits empty" )
-//     $student: Student($id: id)
-//         eval($student.getPersonalityTraits() == null || $student.getPersonalityTraits().isEmpty())
-// then
-//     System.out.println("Lista personalityTraits je prazna za studenta: " + $id);
-// end
+ rule "personality traits empty"
+ when
+     String( this == "personality traits empty" )
+     $student: Student($id: id)
+         eval($student.getPersonalityTraits() == null || $student.getPersonalityTraits().isEmpty())
+ then
+     System.out.println("Lista personalityTraits je prazna za studenta: " + $id);
+ end
 
 query isConnectedWith( String x, String y )
   Connected( x, y; )
@@ -18,10 +19,15 @@ query isConnectedWith( String x, String y )
   ( Connected( z, y; ) and isConnectedWith( x, z; ) )
 end
 
-rule "backward"
+//metod ucenja na osnovu tipa licnosti preko predmeta
+rule "backward2"
 when
-    String( this == "backward" )
-    isConnectedWith(x, y; )
+    String( this == "backward2" )
+    isConnectedWith(x, y;)
+    Student( $traits : personalityTraits )
+    $trait : PersonalityTrait() from $traits
+    eval($trait.name().equals(x))
 then
-    System.out.println( x + " is connected with "+ y );
+    System.out.println(x + " is parent of " + y + " and " + x + " is student's personality trait.");
 end
+

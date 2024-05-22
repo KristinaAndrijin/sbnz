@@ -108,7 +108,7 @@ public class ActivateBackwardRulesService {
     // kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
     // System.out.println("---");
 
-    System.out.println("---Subject name rules---");
+//    System.out.println("---Subject name rules---");
     // kSession.insert("recommend learning methods for subject - PHYSICS");
     // kSession.insert("recommend learning methods for field - SOCIAL SCIENCES");
     // kSession.insert("recommend learning methods for field - MEDICAL SCIENCES");
@@ -117,30 +117,32 @@ public class ActivateBackwardRulesService {
     // kSession.insert("recommend learning methods for field - TECHNICAL SCIENCES");
     // kSession.insert("recommend learning methods for field - LECAL ECONOMIC SCIENCES");
     // kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
-    System.out.println("---");
+//    System.out.println("---");
 
-    kSession.insert(new Connected("ucenje u grupi", "fizika"));
-    kSession.insert(new Connected("auditivno", "istorija"));
-    kSession.insert(new Connected("vizuelno", "engleski"));
-    kSession.insert(new Connected("ucenje kroz igru", "programiranje"));
-    kSession.insert(new Connected("logicko_matematicko", "matematika"));
-    kSession.insert(new Connected("kinesteticko", "umetnost"));
-    kSession.insert(new Connected("verbalno", "fizika"));
-    kSession.insert(new Connected("audio_vizuelno", "istorija"));
+    // BACKWARD CHAINING
+    // metod ucenja -> predmet -> tip licnosti
+    kSession.insert(new Connected("GROUP_LEARNING", "PHYSICS"));
+    kSession.insert(new Connected("AUDITORY", "HISTORY"));
+    kSession.insert(new Connected("VISUAL", "ENGLISH"));
+    kSession.insert(new Connected("LEARNING_THROUGH_PLAY", "PROGRAMMING"));
+    kSession.insert(new Connected("LOGICAL_MATHEMATICAL", "MATHEMATICS"));
+    kSession.insert(new Connected("KINESTHETIC", "ART"));
+    kSession.insert(new Connected("VERBAL", "PHYSICS"));
+    kSession.insert(new Connected("AUDIO_VISUAL", "HISTORY"));
 
-    kSession.insert(new Connected("fizika", "ekstrovert"));
-    kSession.insert(new Connected("istorija", "introvert"));
-    kSession.insert(new Connected( "engleski", "analiticar"));
-    kSession.insert(new Connected( "programiranje", "kreativna_licnost"));
-    kSession.insert(new Connected( "matematika", "prakticna_licnost"));
-    kSession.insert(new Connected( "umetnost", "organizovana_licnost"));
-    kSession.insert(new Connected( "programiranje", "ekstrovert"));
-    kSession.insert(new Connected( "matematika", "introvert"));
+    kSession.insert(new Connected("PHYSICS", "EXTROVERTED"));
+    kSession.insert(new Connected("HISTORY", "INTROVERTED"));
+    kSession.insert(new Connected("ENGLISH", "ANALYTICAL"));
+    kSession.insert(new Connected("PROGRAMMING", "CREATIVE"));
+    kSession.insert(new Connected("MATHEMATICS", "PRACTICAL"));
+    kSession.insert(new Connected("ART", "ORGANIZED"));
+    kSession.insert(new Connected("PROGRAMMING", "REFLECTIVE"));
+    kSession.insert(new Connected("MATHEMATICS", "INTROVERT"));
 
-    kSession.insert("backward");
+    kSession.insert("backward2");
     int fired = kSession.fireAllRules();
-    System.out.println(fired);
-    System.out.println("---");
+//    System.out.println(fired);
+//    System.out.println("---");
     System.out.println("----------------------final--------------------------------");
     // s1.setLearningMethodsUpdated(false);
     System.out.println(s1);
