@@ -21,19 +21,6 @@ public class ActivateBackwardRulesService {
   public void fireRules() {
     KieSession kSession = kieContainer.newKieSession();
 
-    // kSession.insert("say hey");
-    // int fir = kSession.fireAllRules();
-    // System.out.println("fir " + fir);
-
-    kSession.insert(new Location("Office", "House"));
-    kSession.insert(new Location("Kitchen", "House"));
-    kSession.insert(new Location("Knife", "Kitchen"));
-    kSession.insert(new Location("Cheese", "Kitchen"));
-    kSession.insert(new Location("Desk", "Office"));
-    kSession.insert(new Location("Chair", "Office"));
-    kSession.insert(new Location("Computer", "Desk"));
-    kSession.insert(new Location("Draw", "Desk"));
-
     kSession.insert(PersonalityTrait.EXTROVERTED);
     kSession.insert(PersonalityTrait.INTROVERTED);
     kSession.insert(PersonalityTrait.ANALYTICAL);
@@ -148,12 +135,7 @@ public class ActivateBackwardRulesService {
     System.out.println(s1);
     // kSession.insert("create recommendation learning methods list based on subjects");
     // kSession.insert("create recommendation learning methods list based on field");
-    // kSession.fireAllRules();
-    // System.out.println(s1);
-
 //    kSession.insert("personality traits empty");
-//    kSession.fireAllRules();
-//    System.out.println("---");
     }
   }
 
