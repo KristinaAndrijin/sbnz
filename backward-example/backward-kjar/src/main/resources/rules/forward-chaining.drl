@@ -455,7 +455,7 @@ then
     List<LearningMethod> commons = new ArrayList<LearningMethod>(commonMethods);
 
     modify($student) {
-        setLearningMethods(commons),
+        setLearningMethodsForward2(commons),
         setLearningMethodsUpdated(true);
     }
 end
@@ -473,7 +473,7 @@ then
     commonMethods.retainAll( $student.getLearningMethodsBasedOnField() );
     List<LearningMethod> commons = new ArrayList<LearningMethod>(commonMethods);
     modify($student) {
-        setLearningMethods(commons),
+        setLearningMethodsForward1(commons),
         setLearningMethods2Updated(true);
     }
 end

@@ -24,7 +24,7 @@ rule "backward2"
 when
     String( this == "backward2" )
     isConnectedWith(x, y;)
-    Student( $traits : personalityTraits )
+    Student( $traits : personalityTraits, shouldTriggerBackward == true )
     $trait : PersonalityTrait() from $traits
     eval($trait.name().equals(x))
 then

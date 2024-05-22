@@ -43,6 +43,15 @@ public class Student {
     @Position(12)
     private boolean learningMethodsUpdated2;
 
+    @Position(13)
+    private List<LearningMethod> learningMethodsForward1;
+
+    @Position(14)
+    private List<LearningMethod> learningMethodsForward2;
+
+    @Position(15)
+    private boolean shouldTriggerBackward;
+
 
     public Student() {
     }
@@ -187,6 +196,32 @@ public class Student {
         this.learningMethods = new ArrayList<LearningMethod>();
     }
 
+
+
+    public List<LearningMethod> getLearningMethodsForward1() {
+        return learningMethodsForward1;
+    }
+
+    public void setLearningMethodsForward1(List<LearningMethod> learningMethodsForward1) {
+        this.learningMethodsForward1 = new ArrayList<>();
+        for (LearningMethod lm : learningMethodsForward1) {
+            this.learningMethodsForward1.add(lm);
+        }
+        this.setLearningMethods(learningMethodsForward1);
+    }
+
+    public List<LearningMethod> getLearningMethodsForward2() {
+        return learningMethodsForward2;
+    }
+
+    public void setLearningMethodsForward2(List<LearningMethod> learningMethodsForward2) {
+        this.learningMethodsForward2 = new ArrayList<>();
+        for (LearningMethod lm : learningMethodsForward2) {
+            this.learningMethodsForward2.add(lm);
+        }
+        this.setLearningMethods(learningMethodsForward2);
+    }
+
     public List<PersonalityTrait> getPersonalityTraits() {
         return personalityTraits;
     }
@@ -277,6 +312,16 @@ public class Student {
         this.learningMethodsUpdated2 = learningMethodsUpdated;
     }
 
+    
+
+
+    public boolean isShouldTriggerBackward() {
+        return shouldTriggerBackward;
+    }
+
+    public void setShouldTriggerBackward(boolean shouldTriggerBackward) {
+        this.shouldTriggerBackward = shouldTriggerBackward;
+    }
 
     @Override
     public int hashCode() {
@@ -345,8 +390,22 @@ public class Student {
                 + ", learningMethods=" + learningMethods + ", personalityTraits=" + personalityTraits
                 + ", personalizedPlan=" + personalizedPlan + ", field=" + field + ", learningMethodsBasedOnTraits="
                 + learningMethodsBasedOnTraits + ", learningMethodsBasedOnField=" + learningMethodsBasedOnField
-                + ", learningMethodsBasedOnSubjectName=" + learningMethodsBasedOnSubjectName + "]";
+                + ", learningMethodsBasedOnSubjectName=" + learningMethodsBasedOnSubjectName
+                + ", learningMethodsUpdated=" + learningMethodsUpdated + ", learningMethodsUpdated2="
+                + learningMethodsUpdated2 + ", learningMethodsForward1=" + learningMethodsForward1
+                + ", learningMethodsForward2=" + learningMethodsForward2 + "]";
     }
+
+    // @Override
+    // public String toString() {
+    //     return "Student [id=" + id + ", name=" + name + ", surname=" + surname + ", subjects=" + subjects
+    //             + ", learningMethods=" + learningMethods + ", personalityTraits=" + personalityTraits
+    //             + ", personalizedPlan=" + personalizedPlan + ", field=" + field + ", learningMethodsBasedOnTraits="
+    //             + learningMethodsBasedOnTraits + ", learningMethodsBasedOnField=" + learningMethodsBasedOnField
+    //             + ", learningMethodsBasedOnSubjectName=" + learningMethodsBasedOnSubjectName + "]";
+    // }
+
+    
 
     
 

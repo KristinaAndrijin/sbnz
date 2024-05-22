@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ActivateBackwardRulesService {
+public class ForwardService {
   private final KieContainer kieContainer;
 
   @Autowired
-  public ActivateBackwardRulesService(KieContainer kieContainer) {
+  public ForwardService(KieContainer kieContainer) {
     this.kieContainer = kieContainer;
   }
 
-  public void fireRules() {
+  public List<LearningMethod> getMethods(boolean isForward1) {
     KieSession kSession = kieContainer.newKieSession();
 
     kSession.insert(PersonalityTrait.EXTROVERTED);
@@ -67,7 +67,7 @@ public class ActivateBackwardRulesService {
     personalityTraits1.add(PersonalityTrait.ANALYTICAL);
     Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES);
     s1.setField(Field.NATURAL_SCIENCES);
-    s1.setShouldTriggerBackward(true);
+    s1.setShouldTriggerBackward(false);
 
     kSession.insert(s1);
 
@@ -82,8 +82,8 @@ public class ActivateBackwardRulesService {
     // kSession.insert("recommend learning methods for personality trait - REFLECTIVE");
     // System.out.println("---");
 
-    // // int fired = kSession.fireAllRules();
-    // // System.out.println(fired);
+    int fired = kSession.fireAllRules();
+    System.out.println(fired);
 
     // System.out.println("---Field rules---");
     // kSession.insert("recommend learning methods for field - NATURAL SCIENCES");
@@ -109,34 +109,37 @@ public class ActivateBackwardRulesService {
 
     // BACKWARD CHAINING
     // metod ucenja -> predmet -> tip licnosti
-    kSession.insert(new Connected("GROUP_LEARNING", "PHYSICS"));
-    kSession.insert(new Connected("AUDITORY", "HISTORY"));
-    kSession.insert(new Connected("VISUAL", "ENGLISH"));
-    kSession.insert(new Connected("LEARNING_THROUGH_PLAY", "PROGRAMMING"));
-    kSession.insert(new Connected("LOGICAL_MATHEMATICAL", "MATHEMATICS"));
-    kSession.insert(new Connected("KINESTHETIC", "ART"));
-    kSession.insert(new Connected("VERBAL", "PHYSICS"));
-    kSession.insert(new Connected("AUDIO_VISUAL", "HISTORY"));
+    // kSession.insert(new Connected("GROUP_LEARNING", "PHYSICS"));
+    // kSession.insert(new Connected("AUDITORY", "HISTORY"));
+    // kSession.insert(new Connected("VISUAL", "ENGLISH"));
+    // kSession.insert(new Connected("LEARNING_THROUGH_PLAY", "PROGRAMMING"));
+    // kSession.insert(new Connected("LOGICAL_MATHEMATICAL", "MATHEMATICS"));
+    // kSession.insert(new Connected("KINESTHETIC", "ART"));
+    // kSession.insert(new Connected("VERBAL", "PHYSICS"));
+    // kSession.insert(new Connected("AUDIO_VISUAL", "HISTORY"));
 
-    kSession.insert(new Connected("PHYSICS", "EXTROVERTED"));
-    kSession.insert(new Connected("HISTORY", "INTROVERTED"));
-    kSession.insert(new Connected("ENGLISH", "ANALYTICAL"));
-    kSession.insert(new Connected("PROGRAMMING", "CREATIVE"));
-    kSession.insert(new Connected("MATHEMATICS", "PRACTICAL"));
-    kSession.insert(new Connected("ART", "ORGANIZED"));
-    kSession.insert(new Connected("PROGRAMMING", "REFLECTIVE"));
-    kSession.insert(new Connected("MATHEMATICS", "INTROVERT"));
+    // kSession.insert(new Connected("PHYSICS", "EXTROVERTED"));
+    // kSession.insert(new Connected("HISTORY", "INTROVERTED"));
+    // kSession.insert(new Connected("ENGLISH", "ANALYTICAL"));
+    // kSession.insert(new Connected("PROGRAMMING", "CREATIVE"));
+    // kSession.insert(new Connected("MATHEMATICS", "PRACTICAL"));
+    // kSession.insert(new Connected("ART", "ORGANIZED"));
+    // kSession.insert(new Connected("PROGRAMMING", "REFLECTIVE"));
+    // kSession.insert(new Connected("MATHEMATICS", "INTROVERT"));
 
-    kSession.insert("backward2");
-    int fired = kSession.fireAllRules();
 //    System.out.println(fired);
 //    System.out.println("---");
-    System.out.println("----------------------final--------------------------------");
+    System.out.println("----------------------forwards--------------------------------");
     // s1.setLearningMethodsUpdated(false);
     // System.out.println(s1);
     // kSession.insert("create recommendation learning methods list based on subjects");
     // kSession.insert("create recommendation learning methods list based on field");
 //    kSession.insert("personality traits empty");
+
+    if (!isForward1) {
+        return s1.getLearningMethodsForward1();
+    } return s1.getLearningMethodsForward2();
     }
+
   }
 
