@@ -1,0 +1,10 @@
+<div class="admin-home-container">
+    <h2>Student List</h2>
+    <div class="card-container">
+      <div class="card" *ngFor="let student of students">
+        <h3>{{ student.name }} {{ student.surname }}</h3>
+        <button class="btn" (click)="redirectToEditStudent(student.id)">Details</button>
+      </div>
+    </div>
+  </div>
+  

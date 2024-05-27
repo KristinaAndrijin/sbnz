@@ -1,0 +1,28 @@
+<div class="student-container">
+  <div class="student-info">
+    <h2>Student Information</h2>
+    <p><strong>Name:</strong> {{ student.name }}</p>
+    <p><strong>Surname:</strong> {{ student.surname }}</p>
+    <p><strong>Subjects:</strong></p>
+    <ul>
+      <li *ngFor="let subject of student.subjects">{{ subject }}</li>
+    </ul>
+    <p><strong>Field:</strong> {{ student.field }}</p>
+    <p><strong>Personality Traits:</strong></p>
+    
+    <ul>
+      <li *ngFor="let trait of student.personalityTraits">{{ trait }}</li>
+    </ul>
+  </div>
+
+  <div class="student-properties">
+    <h3>Learning methods</h3>
+    <ul>
+      <li *ngFor="let method of student.learningMethods">{{ method }}</li>
+    </ul>
+    <div class="actions">
+      <button (click)="requestLearningMethod()" class="btn">Get learning method (forward)</button>
+      <button style="margin-top: 5px;" (click)="chooseLearningMethod()" class="btn">Set learning method (backward)</button>
+    </div>
+  </div>
+</div>
