@@ -15,6 +15,7 @@ import { StudentHomeComponent } from './components/student-home/student-home.com
 import { AdminEditStudentComponent } from './components/admin-edit-student/admin-edit-student.component';
 import { EditSubjectsComponent } from './dialogs/edit-subjects/edit-subjects.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { EditTraitsComponent } from './dialogs/edit-traits/edit-traits.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     LoginComponent,
     StudentHomeComponent,
     AdminEditStudentComponent,
-    EditSubjectsComponent
+    EditSubjectsComponent,
+    EditTraitsComponent
     ],
   imports: [
     BrowserModule,

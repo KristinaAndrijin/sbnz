@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'app/services/student.service'; 
-import { Student, Subject } from 'app/model/Student';
+import { Student } from 'app/model/Student';
 import { EditSubjectsComponent } from 'app/dialogs/edit-subjects/edit-subjects.component';
 import { MatDialog } from '@angular/material/dialog';
 

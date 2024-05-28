@@ -1,5 +1,6 @@
 package com.ftn.sbnz.backward.service.services;
 
+import com.ftn.sbnz.backward.service.models.PersonalityTrait;
 import com.ftn.sbnz.backward.service.models.Student;
 import com.ftn.sbnz.backward.service.models.Subject;
 import com.ftn.sbnz.backward.service.models.SubjectName;
@@ -29,6 +30,19 @@ public class StudentService {
             s.setStudent(student);
             student.getSubjects().add(s);
         }
+
+        studentRepository.save(student);
+    }
+
+    public void updateStudentTraits(Long studentId, List<PersonalityTrait> personalityTraits) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new EntityNotFoundException("Student with id " + studentId + " not found"));
+
+        student.getPersonalityTraits().clear();
+
+        student.setPersonalityTraits(personalityTraits);
+
+        System.out.println(student.getPersonalityTraits());
 
         studentRepository.save(student);
     }

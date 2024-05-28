@@ -1,5 +1,6 @@
 package com.ftn.sbnz.backward.service.controllers;
 
+import com.ftn.sbnz.backward.service.models.PersonalityTrait;
 import com.ftn.sbnz.backward.service.models.Student;
 import com.ftn.sbnz.backward.service.models.Subject;
 import com.ftn.sbnz.backward.service.repository.StudentRepository;
@@ -47,6 +48,16 @@ public class StudentController {
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating student subjects");
+        }
+    }
+
+    @PutMapping("/{studentId}/traits")
+    public ResponseEntity<?> updateStudentTraits(@PathVariable Long studentId, @RequestBody List<PersonalityTrait> personalityTraits) {
+        try {
+            studentService.updateStudentTraits(studentId, personalityTraits);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating student personality traits");
         }
     }
 }
