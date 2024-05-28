@@ -48,12 +48,12 @@ export interface Student {
   }
 
   export enum SubjectName {
-    PHYSICS,
-    HISTORY,
-    ENGLISH,
-    PROGRAMMING,
-    MATHS,
-    ARTS
+    PHYSICS = 'PHYSICS',
+    HISTORY = 'HISTORY',
+    ENGLISH = 'ENGLISH',
+    PROGRAMMING = 'PROGRAMMING',
+    MATHS = 'MATHS',
+    ARTS = 'ARTS'
   }
   
   export interface PersonalizedPlan {

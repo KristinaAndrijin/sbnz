@@ -1,4 +1,4 @@
-<div class="student-container">
+<div class="student-container" [class.blur-background]="isDialogOpen">
     <div class="student-info">
         <h2>Student Information</h2>
         <p><strong>Name:</strong> {{ student.name }}</p>
@@ -20,9 +20,9 @@
         <ul>
             <li *ngFor="let method of student.learningMethods">{{ method }}</li>
         </ul>
-        <div class="actions">
-            <button style="margin-top: 5px;" (click)="editSubject()" class="btn">Edit student's subject</button>
-            <button (click)="backToAllStudents()" class="btn">Back To All Students</button>
+        <div class="actions main-content">
+            <button (click)="editSubject()" class="btn">Edit student's subject</button>
+            <button style="margin-top: 5px;" (click)="backToAllStudents()" class="btn">Back To All Students</button>
         </div>
     </div>
 </div>

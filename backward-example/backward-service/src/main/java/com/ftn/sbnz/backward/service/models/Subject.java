@@ -62,6 +62,12 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
+    public Subject( String name, SubjectName subjectName, Student student) {
+        this.name = name;
+        this.subjectName = subjectName;
+        this.student = student;
+    }
+
 
     public Subject() {
     }

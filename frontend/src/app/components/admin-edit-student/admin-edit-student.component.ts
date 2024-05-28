@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'app/services/student.service'; 
-import { Student } from 'app/model/Student';
+import { Student, Subject } from 'app/model/Student';
+import { EditSubjectsComponent } from 'app/dialogs/edit-subjects/edit-subjects.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin-edit-student',
@@ -9,10 +11,11 @@ import { Student } from 'app/model/Student';
   styleUrl: './admin-edit-student.component.css'
 })
 export class AdminEditStudentComponent {
+  isDialogOpen: boolean = false;
   studentId: number = 0;
   student: any; 
 
-  constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -35,7 +38,32 @@ export class AdminEditStudentComponent {
     this.router.navigate(['/admin-home']);
   }
 
-  editSubject() {
-    
+  editSubject(): void {
+    const dialogRef = this.dialog.open(EditSubjectsComponent, {
+      width: '250px',
+      panelClass: 'custom-dialog-container',
+      backdropClass: 'backdrop-blur',
+      data: { studentId: this.studentId },
+    });
+
+    dialogRef.afterOpened().subscribe(() => {
+      this.isDialogOpen = true;
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log('Selected subjects:', result);
+      this.isDialogOpen = false;
+      this.updateStudentSubjects(result);
+    });
+  }
+
+  updateStudentSubjects(selectedSubjects: any[]): void {
+    this.studentService.updateStudentSubjects(this.studentId, selectedSubjects).subscribe(() => {
+      console.log('Student subjects updated successfully.');
+      this.loadStudent(this.studentId);
+    }, error => {
+      console.error('Error updating student subjects:', error);
+    });
   }
 }
