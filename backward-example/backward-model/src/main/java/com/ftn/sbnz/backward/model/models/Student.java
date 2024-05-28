@@ -1,11 +1,24 @@
 package com.ftn.sbnz.backward.model.models;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.kie.api.definition.type.Position;
-
+import javax.persistence.*;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Entity
+@Table(name = "student")
 public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Position(0)
     private Integer id;
 
@@ -15,26 +28,52 @@ public class Student {
     @Position(2)
     private String surname;
 
+    @OneToMany(mappedBy = "student")
     @Position(3)
     private List<Subject> subjects;
 
+    @ElementCollection
+    @CollectionTable(name = "student_learning_methods", joinColumns = @JoinColumn(name = "student_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "learning_method")
     @Position(4)
     private List<LearningMethod> learningMethods;
 
+    @ElementCollection
+    @CollectionTable(name = "student_personality_traits", joinColumns = @JoinColumn(name = "student_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "personality_trait")
     @Position(5)
     private List<PersonalityTrait> personalityTraits;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "personalized_plan_id")
     @Position(6)
     private PersonalizedPlan personalizedPlan;
+
+//    @ManyToOne
+//    @JoinColumn(name = "field_id")
     @Position(7)
     private Field field;
 
+    @ElementCollection
+    @CollectionTable(name = "student_learning_methods_traits", joinColumns = @JoinColumn(name = "student_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "learning_method")
     @Position(8)
     private List<LearningMethod> learningMethodsBasedOnTraits;
 
+    @ElementCollection
+    @CollectionTable(name = "student_learning_methods_field", joinColumns = @JoinColumn(name = "student_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "learning_method")
     @Position(9)
     private List<LearningMethod> learningMethodsBasedOnField;
 
+    @ElementCollection
+    @CollectionTable(name = "student_learning_methods_subject", joinColumns = @JoinColumn(name = "student_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "learning_method")
     @Position(10)
     private List<LearningMethod> learningMethodsBasedOnSubjectName;
 
@@ -43,18 +82,22 @@ public class Student {
     @Position(12)
     private boolean learningMethodsUpdated2;
 
+    @ElementCollection
+    @CollectionTable(name = "student_learning_methods", joinColumns = @JoinColumn(name = "student_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "learning_method")
     @Position(13)
     private List<LearningMethod> learningMethodsForward1;
 
+    @ElementCollection
+    @CollectionTable(name = "student_learning_methods", joinColumns = @JoinColumn(name = "student_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "learning_method")
     @Position(14)
     private List<LearningMethod> learningMethodsForward2;
-
     @Position(15)
     private boolean shouldTriggerBackward;
 
-
-    public Student() {
-    }
 
     public Student(String name, String surname) {
         this.name = name;
@@ -112,6 +155,19 @@ public class Student {
         this.learningMethodsUpdated2 = false;
     }
 
+    public Student(String name, String surname, List<PersonalityTrait> personalityTraits,
+                   Field field) {
+        this.name = name;
+        this.surname = surname;
+        this.personalityTraits = personalityTraits;
+        this.field = field;
+        this.learningMethods = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
+        this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+        this.learningMethodsUpdated = false;
+        this.learningMethodsUpdated2 = false;
+    }
 
     public Student(Integer id, String name, String surname, List<Subject> subjects,
             List<LearningMethod> learningMethods, List<PersonalityTrait> personalityTraits,

@@ -5,7 +5,7 @@
         <p><strong>Surname:</strong> {{ student.surname }}</p>
         <p><strong>Subjects:</strong></p>
         <ul>
-            <li *ngFor="let subject of student.subjects">{{ subject }}</li>
+            <li *ngFor="let subject of student.subjects">{{ subject.subjectName }}</li>
         </ul>
         <p><strong>Field:</strong> {{ student.field }}</p>
         <p><strong>Personality Traits:</strong></p>

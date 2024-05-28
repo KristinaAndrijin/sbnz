@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Student } from 'app/model/Student';
+import { StudentService } from 'app/services/student.service';
 
 @Component({
   selector: 'app-student-home',
@@ -7,24 +10,35 @@ import { Component } from '@angular/core';
 })
 export class StudentHomeComponent {
 
-  ngOnInit() {
-    console.log(this.student.subjects);
+  studentId: number = 0;
+  student: any;
+
+  constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService) { }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.studentId = +params['id'];
+      this.loadStudent(this.studentId);
+    });
   }
-  
-  student = {
-    name: 'John',
-    surname: 'Doe',
-    subjects: ['Math', 'Science', 'History'],
-    field: 'Natural Science',
-    personalityTraits: ['Extravert', 'Creative'],
-    learningMethods: ['Auditory', 'Verbal']
-  };
+
+  loadStudent(id: number): void {
+    this.studentService.getStudentById(47).subscribe((data: Student) => {
+      this.student = data;
+      console.log('Loaded student:', this.student);
+    }, error => {
+      console.error('Error loading student:', error);
+    });
+  }
 
   requestLearningMethod() {
-    
+
   }
 
   chooseLearningMethod() {
-    
+
+  }
+
+  setPersonalityTraits() {
   }
 }

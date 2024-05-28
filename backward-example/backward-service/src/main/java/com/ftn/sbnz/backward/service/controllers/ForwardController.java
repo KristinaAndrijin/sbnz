@@ -26,7 +26,7 @@ public class ForwardController {
 
     @GetMapping("/methods")
     public ResponseEntity<List<LearningMethod>> getMethods() {
-        List<LearningMethod> methods = service.getMethods();
+        List<LearningMethod> methods = service.getMethods(true);
         return ResponseEntity.ok(methods);
     }
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentService } from 'app/services/student.service'; 
+import { Student } from 'app/model/Student';
 
 @Component({
   selector: 'app-admin-edit-student',
@@ -8,29 +10,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AdminEditStudentComponent {
   studentId: number = 0;
-  // student: any; 
+  student: any; 
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.studentId = +params['id'];
-      // this.student = this.findStudentById(this.studentId); //iz servisa
+    this.studentId = +params['id'];
+    this.loadStudent(this.studentId);
+  });
+  }
+  
+  loadStudent(id: number): void {
+    this.studentService.getStudentById(id).subscribe((data: Student) => {
+      this.student = data;
+      console.log('Loaded student:', this.student); 
+    }, error => {
+      console.error('Error loading student:', error);
     });
   }
   
-  student = {
-    id: 1,
-    name: 'John',
-    surname: 'Doe',
-    subjects: ['Math', 'Science', 'History'],
-    field: 'Natural Science',
-    personalityTraits: ['Extravert', 'Creative'],
-    learningMethods: ['Auditory', 'Verbal']
-  };
 
   backToAllStudents() {
-    this.router.navigate(['/admin-home']); // Ispravljena putanja
+    this.router.navigate(['/admin-home']);
   }
 
   editSubject() {

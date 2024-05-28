@@ -4,12 +4,19 @@ import java.sql.Date;
 
 import org.kie.api.definition.type.Position;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "personalized_plan")
 public class PersonalizedPlan {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Position(0)
     private Integer id;
 
-    @Position(1)
-    private Student studentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private Student student;
 
     @Position(2)
     private LearningMethod methodId;
@@ -20,6 +27,9 @@ public class PersonalizedPlan {
     @Position(4)
     private Integer studentReview;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "grade_id")
     @Position(5)
     private Grade subjectGrade;
 
@@ -29,7 +39,7 @@ public class PersonalizedPlan {
     public PersonalizedPlan(Integer id, Student studentId, LearningMethod methodId, Date startDate,
             Integer studentReview, Grade subjectGrade) {
         this.id = id;
-        this.studentId = studentId;
+//        this.studentId = studentId;
         this.methodId = methodId;
         this.startDate = startDate;
         this.studentReview = studentReview;
@@ -44,13 +54,13 @@ public class PersonalizedPlan {
         this.id = id;
     }
 
-    public Student getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Student studentId) {
-        this.studentId = studentId;
-    }
+//    public Student getStudentId() {
+//        return studentId;
+//    }
+//
+//    public void setStudentId(Student studentId) {
+//        this.studentId = studentId;
+//    }
 
     public LearningMethod getMethodId() {
         return methodId;
@@ -89,7 +99,7 @@ public class PersonalizedPlan {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((studentId == null) ? 0 : studentId.hashCode());
+//        result = prime * result + ((studentId == null) ? 0 : studentId.hashCode());
         result = prime * result + ((methodId == null) ? 0 : methodId.hashCode());
         result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
         result = prime * result + ((studentReview == null) ? 0 : studentReview.hashCode());
@@ -111,11 +121,11 @@ public class PersonalizedPlan {
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (studentId == null) {
-            if (other.studentId != null)
-                return false;
-        } else if (!studentId.equals(other.studentId))
-            return false;
+//        if (studentId == null) {
+//            if (other.studentId != null)
+//                return false;
+//        } else if (!studentId.equals(other.studentId))
+//            return false;
         if (methodId != other.methodId)
             return false;
         if (startDate == null) {
@@ -138,7 +148,7 @@ public class PersonalizedPlan {
 
     @Override
     public String toString() {
-        return "PersonalizedPlan [id=" + id + ", studentId=" + studentId + ", methodId=" + methodId + ", startDate="
+        return "PersonalizedPlan [id=" + id +  ", methodId=" + methodId + ", startDate="
                 + startDate + ", studentReview=" + studentReview + ", subjectGrade=" + subjectGrade + "]";
     }
 

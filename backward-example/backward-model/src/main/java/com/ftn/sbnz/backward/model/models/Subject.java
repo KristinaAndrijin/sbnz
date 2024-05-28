@@ -2,11 +2,19 @@ package com.ftn.sbnz.backward.model.models;
 
 import org.kie.api.definition.type.Position;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "subject")
 public class Subject {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Position(0)
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 
     @Position(1)
     private String name;

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Student } from 'app/model/Student';
+import { StudentService } from 'app/services/student.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -7,30 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-home.component.css']
 })
 export class AdminHomeComponent {
-  students = [
-    {
-      id: 1,
-      name: 'John',
-      surname: 'Doe',
-      subjects: ['Math', 'Science', 'History'],
-      field: 'Natural Science',
-      personalityTraits: ['Extravert', 'Creative'],
-      learningMethods: ['Auditory', 'Verbal']
-    },
-    {
-      id: 2,
-      name: 'John2',
-      surname: 'Doe2',
-      subjects: ['Math', 'Science', 'History'],
-      field: 'Natural Science',
-      personalityTraits: ['Extravert', 'Creative'],
-      learningMethods: ['Auditory', 'Verbal']
-    }
-  ];
+  students :Student[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private studentService: StudentService) {}
+
+  ngOnInit(): void {
+    this.studentService.getAllStudents().subscribe((data: Student[]) => {
+      this.students = data;
+    });
+    console.log(this.students)
+  }
 
   redirectToEditStudent(studentId: number) {
-    this.router.navigate(['/admin-edit-student', studentId]); // Ispravljena putanja
+    this.router.navigate(['/admin-edit-student', studentId]); 
   }
 }

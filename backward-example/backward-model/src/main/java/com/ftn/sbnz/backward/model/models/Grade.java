@@ -4,15 +4,23 @@ import java.sql.Date;
 
 import org.kie.api.definition.type.Position;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "grade")
 public class Grade {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Position(0)
     private Integer id;
 
-    @Position(1)
-    private Student studentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private Student student;
 
-    @Position(2)
-    private Subject subjectId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
 
     @Position(3)
     private Integer grade;
@@ -25,8 +33,8 @@ public class Grade {
 
     public Grade(Integer id, Student studentId, Subject subjectId, Integer grade, Date timestamp) {
         this.id = id;
-        this.studentId = studentId;
-        this.subjectId = subjectId;
+//        this.studentId = studentId;
+//        this.subjectId = subjectId;
         this.grade = grade;
         this.timestamp = timestamp;
     }
@@ -39,21 +47,21 @@ public class Grade {
         this.id = id;
     }
 
-    public Student getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Student studentId) {
-        this.studentId = studentId;
-    }
-
-    public Subject getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(Subject subjectId) {
-        this.subjectId = subjectId;
-    }
+//    public Student getStudentId() {
+//        return studentId;
+//    }
+//
+//    public void setStudentId(Student studentId) {
+//        this.studentId = studentId;
+//    }
+//
+//    public Subject getSubjectId() {
+//        return subjectId;
+//    }
+//
+//    public void setSubjectId(Subject subjectId) {
+//        this.subjectId = subjectId;
+//    }
 
     public Integer getGrade() {
         return grade;
@@ -76,8 +84,8 @@ public class Grade {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((studentId == null) ? 0 : studentId.hashCode());
-        result = prime * result + ((subjectId == null) ? 0 : subjectId.hashCode());
+//        result = prime * result + ((studentId == null) ? 0 : studentId.hashCode());
+//        result = prime * result + ((subjectId == null) ? 0 : subjectId.hashCode());
         result = prime * result + ((grade == null) ? 0 : grade.hashCode());
         result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
         return result;
@@ -97,16 +105,16 @@ public class Grade {
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (studentId == null) {
-            if (other.studentId != null)
-                return false;
-        } else if (!studentId.equals(other.studentId))
-            return false;
-        if (subjectId == null) {
-            if (other.subjectId != null)
-                return false;
-        } else if (!subjectId.equals(other.subjectId))
-            return false;
+//        if (studentId == null) {
+//            if (other.studentId != null)
+//                return false;
+//        } else if (!studentId.equals(other.studentId))
+//            return false;
+//        if (subjectId == null) {
+//            if (other.subjectId != null)
+//                return false;
+//        } else if (!subjectId.equals(other.subjectId))
+//            return false;
         if (grade == null) {
             if (other.grade != null)
                 return false;
@@ -122,11 +130,8 @@ public class Grade {
 
     @Override
     public String toString() {
-        return "Grade [id=" + id + ", studentId=" + studentId + ", subjectId=" + subjectId + ", grade=" + grade
+        return "Grade [id=" + id  + ", grade=" + grade
                 + ", timestamp=" + timestamp + "]";
     }
 
-    
-
-    
 }
