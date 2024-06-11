@@ -116,4 +116,16 @@ public class StudentController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/getReport1")
+    public ResponseEntity<List<LearningMethod>> getReport1() {
+        try {
+            List<LearningMethod> learningMethods = new ArrayList<>();
+            backService.fireReport1();
+            System.out.println(learningMethods);
+            return ResponseEntity.ok(learningMethods);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

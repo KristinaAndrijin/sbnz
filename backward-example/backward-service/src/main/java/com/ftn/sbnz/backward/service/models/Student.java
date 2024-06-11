@@ -101,6 +101,10 @@ public class Student {
     @Position(15)
     private boolean shouldTriggerBackward;
 
+    @Position(16)
+    @Column(name = "prosek", nullable = true)
+    private Double prosek = 6.88;
+
 
     public Student(String name, String surname) {
         this.name = name;
@@ -239,6 +243,14 @@ public class Student {
 
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
+    }
+
+    public double getProsek() {
+        return prosek;
+    }
+
+    public void setProsek(double prosek) {
+        this.prosek = prosek;
     }
 
     public List<LearningMethod> getLearningMethods() {

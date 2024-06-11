@@ -52,6 +52,7 @@ public class BackwardServiceApplication implements CommandLineRunner {
 		Student student = new Student( "Pera", "Peric", personalityTraits1, Field.NATURAL_SCIENCES);
 		student.setField(Field.NATURAL_SCIENCES);
 		student.setShouldTriggerBackward(true);
+		student.setProsek(10.00);
 
 		Subject sub1 = new Subject("matematika", SubjectName.MATHS);
 		Subject sub2 = new Subject("fizika", SubjectName.PHYSICS);
@@ -68,16 +69,19 @@ public class BackwardServiceApplication implements CommandLineRunner {
 		personalityTraitList1.add(PersonalityTrait.CREATIVE);
 		personalityTraitList1.add(PersonalityTrait.EXTROVERTED);
 		student1.setPersonalityTraits(personalityTraitList1);
+		student1.setProsek(9.25);
 
 		Student student2 = new Student();
 		student2.setName("Jane");
 		student2.setSurname("Doe");
 		student2.setField(Field.SOCIAL_SCIENCES);
+		student2.setProsek(6.00);
 
 		Student student3 = new Student();
 		student3.setName("Alice");
 		student3.setSurname("Smith");
 		student3.setField(Field.MEDICAL_SCIENCES);
+		student3.setProsek(6.50);
 
 		studentRepository.save(student);
 		studentRepository.save(student1);
