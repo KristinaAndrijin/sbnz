@@ -1,10 +1,9 @@
 package com.ftn.sbnz.backward.model.models;
 
-import java.sql.Date;
-
 import org.kie.api.definition.type.Position;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "grade")

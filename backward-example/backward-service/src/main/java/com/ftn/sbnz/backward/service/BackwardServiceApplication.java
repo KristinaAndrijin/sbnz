@@ -1,10 +1,6 @@
 package com.ftn.sbnz.backward.service;
 
-import com.ftn.sbnz.backward.service.models.Subject;
-import com.ftn.sbnz.backward.service.models.SubjectName;
-import com.ftn.sbnz.backward.service.models.Field;
-import com.ftn.sbnz.backward.service.models.PersonalityTrait;
-import com.ftn.sbnz.backward.service.models.Student;
+import com.ftn.sbnz.backward.service.models.*;
 import com.ftn.sbnz.backward.service.repository.StudentRepository;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieScanner;
@@ -26,6 +22,7 @@ import java.util.List;
 public class BackwardServiceApplication implements CommandLineRunner {
 	@Autowired
 	private StudentRepository studentRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(BackwardServiceApplication.class, args);
 	}
@@ -49,7 +46,7 @@ public class BackwardServiceApplication implements CommandLineRunner {
 		personalityTraits1.add(PersonalityTrait.EXTROVERTED);
 		personalityTraits1.add(PersonalityTrait.ANALYTICAL);
 
-		Student student = new Student( "Pera", "Peric", personalityTraits1, Field.NATURAL_SCIENCES);
+		Student student = new Student( "Pera", "Peric", personalityTraits1, Field.NATURAL_SCIENCES, "user1", "user1", Role.STUDENT);
 		student.setField(Field.NATURAL_SCIENCES);
 		student.setShouldTriggerBackward(true);
 		student.setProsek(10.00);

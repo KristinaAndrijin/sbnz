@@ -1,4 +1,4 @@
-package com.ftn.sbnz.backward.model.models;
+package com.ftn.sbnz.backward.service.models;
 
 import org.kie.api.definition.type.Position;
 

@@ -72,7 +72,7 @@ public class ActivateBackwardRulesService {
         personalityTraits1.add(PersonalityTrait.CREATIVE);
         personalityTraits1.add(PersonalityTrait.EXTROVERTED);
         personalityTraits1.add(PersonalityTrait.ANALYTICAL);
-        Student s1 = new Student("Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES);
+        Student s1 = new Student("Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES, "user1", "user1", Role.STUDENT);
         s1.setField(Field.NATURAL_SCIENCES);
         s1.setShouldTriggerBackward(true);
 
