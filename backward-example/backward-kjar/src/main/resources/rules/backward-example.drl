@@ -1,6 +1,8 @@
 package rules;
 
-import com.ftn.sbnz.backward.model.models.*;
+import com.ftn.sbnz.backward.service.models.Connected;
+import com.ftn.sbnz.backward.service.models.Student;
+import com.ftn.sbnz.backward.service.models.PersonalityTrait;
 import java.util.ArrayList;
 
 
@@ -19,15 +21,29 @@ query isConnectedWith( String x, String y )
   ( Connected( z, y; ) and isConnectedWith( x, z; ) )
 end
 
-//metod ucenja na osnovu tipa licnosti preko predmeta
 rule "backward2"
 when
-    String( this == "backward2" )
-    isConnectedWith(x, y;)
-    Student( $traits : personalityTraits)
-    $trait : PersonalityTrait() from $traits
-    eval($trait.name().equals(x))
+    String(this == "backward2")
+    $method: String()
+    $student: Student()
+    $traits: List() from $student.getPersonalityTraits()
+    $trait: PersonalityTrait() from $traits
+    $traitName: String() from $trait.name()
+    eval($traitName.equals(x))
+    isConnectedWith($method, $traitName;)
 then
-    System.out.println(x + " is parent of " + y + " and " + x + " is student's personality trait.");
+    System.out.println($traitName + " is parent of " + $method + " and " + $traitName + " is student's personality trait. Method: " + $method);
+    System.out.println("Moguće postaviti metod " + $method + " za studenta jer je povezan sa osobinom ličnosti.");
 end
 
+//rule "backward2"
+//when
+//    $student: Student()
+//    $traits: List() from $student.getPersonalityTraits()
+//    $trait: PersonalityTrait() from $traits
+//    $method: String()
+//    eval($method != null && $trait.name() != null)
+//    isConnectedWith($method, $traitName; $traitName: $trait.name())
+//then
+//    System.out.println($traitName + " is connected with learning method: " + $method);
+//end

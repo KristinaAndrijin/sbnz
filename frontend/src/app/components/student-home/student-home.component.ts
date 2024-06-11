@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditTraitsComponent } from 'app/dialogs/edit-traits/edit-traits.component';
-import { Student } from 'app/model/Student';
+import { LearningMethod, Student } from 'app/model/Student';
 import { StudentService } from 'app/services/student.service';
+import { LearningMethodDialogComponent } from 'app/dialogs/learning-method-dialog/learning-method-dialog.component';
 
 @Component({
   selector: 'app-student-home',
@@ -12,8 +13,9 @@ import { StudentService } from 'app/services/student.service';
 })
 export class StudentHomeComponent {
   isDialogOpen: boolean = false;
-  studentId: number = 99;
+  studentId: number = 359;
   student: any;
+  learningMethods: LearningMethod[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService, public dialog: MatDialog) { }
 
@@ -21,24 +23,48 @@ export class StudentHomeComponent {
     this.route.params.subscribe(params => {
       this.studentId = +params['id'];
       this.loadStudent(this.studentId);
+      console.log(this.student.getLearningMethodsForward1());
     });
   }
 
   loadStudent(id: number): void {
-    this.studentService.getStudentById(99).subscribe((data: Student) => {
+    this.studentService.getStudentById(359).subscribe((data: Student) => {
       this.student = data;
+      this.learningMethods = this.student.getLearningMethodsForward12;
       console.log('Loaded student:', this.student);
     }, error => {
       console.error('Error loading student:', error);
     });
   }
 
-  requestLearningMethod() {
-
+  requestLearningMethod1() {
+    this.studentService.getLearningMethodsForward1(259).subscribe(
+      (methods) => {
+        this.learningMethods = [];
+        this.learningMethods = methods;
+        console.log(this.learningMethods);
+        alert('Learning methods updated successfully!');
+      },
+      (error) => {
+        console.error(error);
+        alert('Failed to update learning methods.');
+      }
+    );
   }
 
-  chooseLearningMethod() {
-
+  requestLearningMethod2() {
+    this.studentService.getLearningMethodsForward2(259).subscribe(
+      (methods) => {
+        this.learningMethods = [];
+        this.learningMethods = methods;
+        console.log(this.learningMethods);
+        alert('Learning methods updated successfully!');
+      },
+      (error) => {
+        console.error(error);
+        alert('Failed to update learning methods.');
+      }
+    );
   }
 
   setPersonalityTraits() {
@@ -62,12 +88,38 @@ export class StudentHomeComponent {
   }
 
   updateStudentTraits(selectedTraits: any[]): void {
-    this.studentService.updateStudentTraits(99, selectedTraits).subscribe(() => {
+    this.studentService.updateStudentTraits(263, selectedTraits).subscribe(() => {
       console.log('Student traits updated successfully.');
       this.loadStudent(this.studentId);
     }, error => {
       console.error('Error updating student traits:', error);
     });
   }
+
+  chooseLearningMethod(): void {
+    const dialogRef = this.dialog.open(LearningMethodDialogComponent, {
+      width: '300px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateLearningMethod(result);
+      }
+    });
+  }
+
+  updateLearningMethod(method: LearningMethod): void {
+    this.studentService.getLearningMethodsBackward(359, method).subscribe(
+      () => {
+        console.log('Learning method sent successfully.');
+        // this.loadStudent(this.studentId);
+      },
+      error => {
+        console.error('Error sending learning method:', error);
+      }
+    );
+  }
+
 }
 

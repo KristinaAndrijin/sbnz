@@ -1,13 +1,16 @@
 package com.ftn.sbnz.backward.service.services;
 
-import com.ftn.sbnz.backward.model.models.*;
+import ch.qos.logback.core.net.SyslogOutputStream;
+import com.ftn.sbnz.backward.service.models.*;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.rule.FactHandle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ActivateBackwardRulesService {
@@ -65,47 +68,11 @@ public class ActivateBackwardRulesService {
     personalityTraits1.add(PersonalityTrait.CREATIVE);
     personalityTraits1.add(PersonalityTrait.EXTROVERTED);
     personalityTraits1.add(PersonalityTrait.ANALYTICAL);
-    Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES);
+    Student s1 = new Student( "Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES);
     s1.setField(Field.NATURAL_SCIENCES);
     s1.setShouldTriggerBackward(true);
 
     kSession.insert(s1);
-
-    // System.out.println("---Personality trait rules---");
-    // kSession.insert("personality traits empty");
-    // kSession.insert("recommend learning methods for personality trait - EXTROVERTED");
-    // kSession.insert("recommend learning methods for personality trait - INTROVERTED");
-    // kSession.insert("recommend learning methods for personality trait - ANALYTICAL");
-    // kSession.insert("recommend learning methods for personality trait - CREATIVE");
-    // kSession.insert("recommend learning methods for personality trait - PRACTICAL");
-    // kSession.insert("recommend learning methods for personality trait - ORGANIZED");
-    // kSession.insert("recommend learning methods for personality trait - REFLECTIVE");
-    // System.out.println("---");
-
-    // // int fired = kSession.fireAllRules();
-    // // System.out.println(fired);
-
-    // System.out.println("---Field rules---");
-    // kSession.insert("recommend learning methods for field - NATURAL SCIENCES");
-    // kSession.insert("recommend learning methods for field - SOCIAL SCIENCES");
-    // kSession.insert("recommend learning methods for field - MEDICAL SCIENCES");
-    // kSession.insert("recommend learning methods for field - ARTS");
-    // kSession.insert("recommend learning methods for field - LANGUAGES");
-    // kSession.insert("recommend learning methods for field - TECHNICAL SCIENCES");
-    // kSession.insert("recommend learning methods for field - LECAL ECONOMIC SCIENCES");
-    // kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
-    // System.out.println("---");
-
-//    System.out.println("---Subject name rules---");
-    // kSession.insert("recommend learning methods for subject - PHYSICS");
-    // kSession.insert("recommend learning methods for field - SOCIAL SCIENCES");
-    // kSession.insert("recommend learning methods for field - MEDICAL SCIENCES");
-    // kSession.insert("recommend learning methods for field - ARTS");
-    // kSession.insert("recommend learning methods for field - LANGUAGES");
-    // kSession.insert("recommend learning methods for field - TECHNICAL SCIENCES");
-    // kSession.insert("recommend learning methods for field - LECAL ECONOMIC SCIENCES");
-    // kSession.insert("recommend learning methods for field - ARGICULTURE ENVIRONMENTAL SCIENCES");
-//    System.out.println("---");
 
     // BACKWARD CHAINING
     // metod ucenja -> predmet -> tip licnosti
@@ -138,5 +105,59 @@ public class ActivateBackwardRulesService {
     // kSession.insert("create recommendation learning methods list based on field");
 //    kSession.insert("personality traits empty");
     }
+
+
+  public Student fireForward(Student s) {
+    KieSession kSession = kieContainer.newKieSession();
+    try {
+      kSession.insert(s);
+      kSession.fireAllRules();
+      System.out.println(s + "\n");
+      return s;
+    } finally {
+      kSession.dispose();
+    }
   }
 
+
+  public Student fireBackward(Student s, LearningMethod method) {
+    KieSession kSession = kieContainer.newKieSession();
+    try {
+      kSession.insert(s);
+
+      String methodAsString = method.toString();
+      kSession.insert(methodAsString);
+
+      kSession.insert(new Connected("AUDITORY", "CREATIVE"));
+
+
+      kSession.insert(new Connected("GROUP_LEARNING", "PHYSICS"));
+      kSession.insert(new Connected("AUDITORY", "HISTORY"));
+      kSession.insert(new Connected("VISUAL", "ENGLISH"));
+      kSession.insert(new Connected("LEARNING_THROUGH_PLAY", "PROGRAMMING"));
+      kSession.insert(new Connected("LOGICAL_MATHEMATICAL", "MATHEMATICS"));
+      kSession.insert(new Connected("KINESTHETIC", "ART"));
+      kSession.insert(new Connected("VERBAL", "PHYSICS"));
+      kSession.insert(new Connected("AUDIO_VISUAL", "HISTORY"));
+
+      kSession.insert(new Connected("PHYSICS", "EXTROVERTED"));
+      kSession.insert(new Connected("HISTORY", "INTROVERTED"));
+      kSession.insert(new Connected("ENGLISH", "ANALYTICAL"));
+      kSession.insert(new Connected("PROGRAMMING", "CREATIVE"));
+      kSession.insert(new Connected("MATHEMATICS", "PRACTICAL"));
+      kSession.insert(new Connected("ART", "ORGANIZED"));
+      kSession.insert(new Connected("PROGRAMMING", "REFLECTIVE"));
+      kSession.insert(new Connected("MATHEMATICS", "INTROVERT"));
+
+      kSession.insert("backward2");
+      kSession.fireAllRules();
+      System.out.println("----------------------final--------------------------------");
+
+      System.out.println(s + "\n");
+      return s;
+    } finally {
+      kSession.dispose();
+    }
+
+  }
+}

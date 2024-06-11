@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,7 @@ import { AdminEditStudentComponent } from './components/admin-edit-student/admin
 import { EditSubjectsComponent } from './dialogs/edit-subjects/edit-subjects.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { EditTraitsComponent } from './dialogs/edit-traits/edit-traits.component';
-
+import { LearningMethodDialogComponent } from './dialogs/learning-method-dialog/learning-method-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { EditTraitsComponent } from './dialogs/edit-traits/edit-traits.component
     StudentHomeComponent,
     AdminEditStudentComponent,
     EditSubjectsComponent,
-    EditTraitsComponent
+    EditTraitsComponent,
+    LearningMethodDialogComponent
     ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ import { EditTraitsComponent } from './dialogs/edit-traits/edit-traits.component
     HttpClientModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatRadioModule
   ],
   providers: [
     provideAnimationsAsync('noop')

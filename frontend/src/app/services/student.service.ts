@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Student } from 'app/model/Student';
+import { LearningMethod, Student } from 'app/model/Student';
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +30,23 @@ export class StudentService {
     return this.http.put(url, selectedTraits);
   }
 
+  getLearningMethodsForward1(id: number): Observable<LearningMethod[]> {
+    const url = `${this.apiUrl}/${id}/forward1`;
+    return this.http.get<LearningMethod[]>(url);
+  }
+
+  getLearningMethodsForward2(id: number): Observable<LearningMethod[]> {
+    const url = `${this.apiUrl}/${id}/forward2`;
+    return this.http.get<LearningMethod[]>(url);
+  }
+
+  getLearningMethodsForward12(id: number): Observable<LearningMethod[]> {
+    const url = `${this.apiUrl}/${id}/forward12`;
+    return this.http.get<LearningMethod[]>(url);
+  }
+  getLearningMethodsBackward(id: number, method: LearningMethod): Observable<LearningMethod[]> {
+    const url = `${this.apiUrl}/${id}/backward?method=${method}`;
+    return this.http.get<LearningMethod[]>(url);
+  }
+  
 }

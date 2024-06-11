@@ -1,14 +1,17 @@
 package rules;
 
-import com.ftn.sbnz.backward.model.models.Location;
-import com.ftn.sbnz.backward.model.models.Student;
-import com.ftn.sbnz.backward.model.models.PersonalityTrait
-import com.ftn.sbnz.backward.model.models.*;
+import com.ftn.sbnz.backward.service.models.LearningMethod;
+import com.ftn.sbnz.backward.service.models.Student;
+import com.ftn.sbnz.backward.service.models.PersonalityTrait;
+import com.ftn.sbnz.backward.service.models.Subject;
+import com.ftn.sbnz.backward.service.models.Connected;
+import com.ftn.sbnz.backward.service.models.Field;
+import com.ftn.sbnz.backward.service.models.SubjectName;
 import com.ftn.sbnz.backward.service.services.*;
 import java.util.List
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.Set
 
 
 rule "recommend learning methods for personality trait - EXTROVERTED"

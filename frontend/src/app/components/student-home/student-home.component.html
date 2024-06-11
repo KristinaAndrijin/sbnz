@@ -12,18 +12,18 @@
     <ul>
       <li *ngFor="let trait of student.personalityTraits">{{ trait }}</li>
     </ul>
-    <button (click)="setPersonalityTraits()" class="btn">Change personality traits (test licnosti)</button>
+    <button (click)="setPersonalityTraits()" class="btn">Change personality traits</button>
   </div>
 
   <div class="student-properties">
     <h3>Learning methods</h3>
     <ul>
-      <li *ngFor="let method of student.learningMethods">{{ method }}</li>
+      <li *ngFor="let method of learningMethods">{{ method }}</li>
     </ul>
     <div class="actions">
-      <button (click)="requestLearningMethod()" class="btn">Get learning method (forward 1)</button>
-      <button style="margin-top: 5px;" (click)="requestLearningMethod()" class="btn">Get learning method (forward 2)</button>
-      <button style="margin-top: 5px;" (click)="chooseLearningMethod()" class="btn">Set learning method (backward)</button>
+      <button (click)="requestLearningMethod1()" class="btn">Get learning method based on field and personality traits</button>
+      <button style="margin-top: 5px;" (click)="requestLearningMethod2()" class="btn">Get learning method based on subjects and personality traits</button>
+      <button style="margin-top: 5px;" (click)="chooseLearningMethod()" class="btn">Set learning method</button>
     </div>
   </div>
 </div>

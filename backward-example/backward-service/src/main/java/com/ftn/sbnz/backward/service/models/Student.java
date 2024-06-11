@@ -247,9 +247,8 @@ public class Student {
 
 
     public void setLearningMethods(List<LearningMethod> lms) {
-        for (LearningMethod lm : lms) {
-            this.learningMethods.add(lm);
-        }
+        this.learningMethods.clear();
+        this.learningMethods.addAll(lms);
     }
 
     public void emptyLearningMethods() {
@@ -263,24 +262,16 @@ public class Student {
     }
 
     public void setLearningMethodsForward1(List<LearningMethod> learningMethodsForward1) {
-        this.learningMethodsForward1 = new ArrayList<>();
-        for (LearningMethod lm : learningMethodsForward1) {
-            this.learningMethodsForward1.add(lm);
-        }
-        this.setLearningMethods(learningMethodsForward1);
-    }
+        this.learningMethodsForward1.clear();
+        this.learningMethodsForward1.addAll(learningMethodsForward1);}
 
     public List<LearningMethod> getLearningMethodsForward2() {
         return learningMethodsForward2;
     }
 
     public void setLearningMethodsForward2(List<LearningMethod> learningMethodsForward2) {
-        this.learningMethodsForward2 = new ArrayList<>();
-        for (LearningMethod lm : learningMethodsForward2) {
-            this.learningMethodsForward2.add(lm);
-        }
-        this.setLearningMethods(learningMethodsForward2);
-    }
+        this.learningMethodsForward2.clear();
+        this.learningMethodsForward2.addAll(learningMethodsForward2);}
 
     public List<PersonalityTrait> getPersonalityTraits() {
         return personalityTraits;
@@ -313,9 +304,8 @@ public class Student {
 
 
     public void setLearningMethodsBasedOnTraits(List<LearningMethod> lms) {
-        for (LearningMethod lm : lms) {
-            this.learningMethodsBasedOnTraits.add(lm);
-        }
+        this.learningMethodsBasedOnTraits.clear();
+        this.learningMethodsBasedOnTraits.addAll(lms);
     }
 
     public void emptyLearningMethodsBasedOnTraits() {
@@ -329,9 +319,8 @@ public class Student {
 
 
     public void setLearningMethodsBasedOnField(List<LearningMethod> lms) {
-        for (LearningMethod lm : lms) {
-            this.learningMethodsBasedOnField.add(lm);
-        }
+        this.learningMethodsBasedOnField.clear();
+        this.learningMethodsBasedOnField.addAll(lms);
     }
 
     public void emptyLearningMethodsBasedOnField() {
@@ -345,9 +334,8 @@ public class Student {
 
 
     public void setLearningMethodsBasedOnSubjectName(List<LearningMethod> lms) {
-        for (LearningMethod lm : lms) {
-            this.learningMethodsBasedOnSubjectName.add(lm);
-        }
+        this.learningMethodsBasedOnSubjectName.clear();
+        this.learningMethodsBasedOnSubjectName.addAll(lms);
     }
 
     public void emptyLearningMethodsBasedOnSubjectName() {
