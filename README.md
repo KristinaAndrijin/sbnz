@@ -24,3 +24,4 @@ U *Intellij*-u izvršiti sledeće komande:
 * Izaberite opciju Run Maven Goal 'clean'.
 * Ponovo dvaput kliknite na Ctrl. U dijalogu za pretragu upišite maven install.
 * Izaberite opciju Run Maven Goal 'install'.
+* Zatim komandom mvn spring-boot:run pokrenite aplikaciju.
