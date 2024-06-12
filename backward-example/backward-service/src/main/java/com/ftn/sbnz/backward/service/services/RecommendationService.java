@@ -8,7 +8,7 @@ import org.kie.api.runtime.KieContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ftn.sbnz.backward.service.models.*;
+import com.ftn.sbnz.backward.model.models.*;
 
 @Service
 public class RecommendationService {

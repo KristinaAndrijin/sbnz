@@ -7,6 +7,7 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.FactHandle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +19,9 @@ import java.util.Optional;
 public class ActivateBackwardRulesService {
     private final KieContainer kieContainer;
     private final StudentRepository studentRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public ActivateBackwardRulesService(KieContainer kieContainer, StudentRepository studentRepository) {
@@ -72,7 +76,7 @@ public class ActivateBackwardRulesService {
         personalityTraits1.add(PersonalityTrait.CREATIVE);
         personalityTraits1.add(PersonalityTrait.EXTROVERTED);
         personalityTraits1.add(PersonalityTrait.ANALYTICAL);
-        Student s1 = new Student("Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES, "user1", "user1", Role.STUDENT);
+        Student s1 = new Student("Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES, "pera", bCryptPasswordEncoder.encode("123"));
         s1.setField(Field.NATURAL_SCIENCES);
         s1.setShouldTriggerBackward(true);
 

@@ -1,9 +1,10 @@
 package com.ftn.sbnz.backward.model.models;
 
+import java.sql.Date;
+
 import org.kie.api.definition.type.Position;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
 @Table(name = "personalized_plan")
@@ -36,7 +37,7 @@ public class PersonalizedPlan {
     }
 
     public PersonalizedPlan(Integer id, Student studentId, LearningMethod methodId, Date startDate,
-                            Integer studentReview, Grade subjectGrade) {
+            Integer studentReview, Grade subjectGrade) {
         this.id = id;
 //        this.studentId = studentId;
         this.methodId = methodId;

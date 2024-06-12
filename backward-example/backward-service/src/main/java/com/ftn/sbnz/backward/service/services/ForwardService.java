@@ -1,6 +1,6 @@
 package com.ftn.sbnz.backward.service.services;
 
-import com.ftn.sbnz.backward.service.models.*;
+import com.ftn.sbnz.backward.model.models.*;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +65,7 @@ public class ForwardService {
     personalityTraits1.add(PersonalityTrait.CREATIVE);
     personalityTraits1.add(PersonalityTrait.EXTROVERTED);
     personalityTraits1.add(PersonalityTrait.ANALYTICAL);
-    Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES, "user1", "user1", Role.STUDENT);
+    Student s1 = new Student(1, "Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES);
     s1.setField(Field.NATURAL_SCIENCES);
     s1.setShouldTriggerBackward(false);
 

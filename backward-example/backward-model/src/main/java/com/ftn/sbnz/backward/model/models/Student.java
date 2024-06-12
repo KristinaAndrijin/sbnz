@@ -1,17 +1,12 @@
 package com.ftn.sbnz.backward.model.models;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.kie.api.definition.type.Position;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import javax.persistence.*;
+import javax.persistence.Table;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @NoArgsConstructor
@@ -20,7 +15,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "student")
-public class Student extends User {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +28,9 @@ public class Student extends User {
     @Position(2)
     private String surname;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "student")
     @Position(3)
-    @JsonManagedReference
-    private List<Subject> subjects  = new ArrayList<>();
+    private List<Subject> subjects;
 
     @ElementCollection
     @CollectionTable(name = "student_learning_methods", joinColumns = @JoinColumn(name = "student_id"))
@@ -104,26 +98,10 @@ public class Student extends User {
     @Position(15)
     private boolean shouldTriggerBackward;
 
-    @Position(16)
-    private String username;
 
-    @Position(17)
-    private String password;
-
-    @Position(18)
-    private Role role;
-
-    @Position(19)
-    @Column(name = "prosek", nullable = true)
-    private Double prosek = 6.88;
-
-
-    public Student(String name, String surname, String username, String password, Role role) {
+    public Student(String name, String surname) {
         this.name = name;
         this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.role = role;
         this.learningMethods = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
@@ -133,13 +111,10 @@ public class Student extends User {
     }
 
 
-    public Student(Integer id, String name, String surname, String username, String password, Role role) {
+    public Student(Integer id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.role = role;
         this.learningMethods = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
@@ -150,13 +125,10 @@ public class Student extends User {
 
 
     public Student(String name, String surname, List<Subject> subjects, List<PersonalityTrait> personalityTraits,
-                   Field field, String username, String password, Role role) {
+            Field field) {
         this.name = name;
         this.surname = surname;
-        this.username = username;
-        this.password = password;
         this.subjects = subjects;
-        this.role = role;
         this.personalityTraits = personalityTraits;
         this.field = field;
         this.learningMethods = new ArrayList<LearningMethod>();
@@ -168,14 +140,11 @@ public class Student extends User {
     }
 
     public Student(int id, String name, String surname, List<Subject> subjects, List<PersonalityTrait> personalityTraits,
-                   Field field, String username, String password, Role role) {
+            Field field) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.username = username;
-        this.password = password;
         this.subjects = subjects;
-        this.role = role;
         this.personalityTraits = personalityTraits;
         this.field = field;
         this.learningMethods = new ArrayList<LearningMethod>();
@@ -187,12 +156,9 @@ public class Student extends User {
     }
 
     public Student(String name, String surname, List<PersonalityTrait> personalityTraits,
-                   Field field, String username, String password, Role role) {
+                   Field field) {
         this.name = name;
         this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.role = role;
         this.personalityTraits = personalityTraits;
         this.field = field;
         this.learningMethods = new ArrayList<LearningMethod>();
@@ -204,15 +170,12 @@ public class Student extends User {
     }
 
     public Student(Integer id, String name, String surname, List<Subject> subjects,
-                   List<LearningMethod> learningMethods, List<PersonalityTrait> personalityTraits,
-                   PersonalizedPlan personalizedPlan, String username, String password, Role role) {
+            List<LearningMethod> learningMethods, List<PersonalityTrait> personalityTraits,
+            PersonalizedPlan personalizedPlan) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.username = username;
-        this.password = password;
         this.subjects = subjects;
-        this.role = role;
         this.learningMethods = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnTraits = new ArrayList<LearningMethod>();
         this.learningMethodsBasedOnField = new ArrayList<LearningMethod>();
@@ -224,16 +187,13 @@ public class Student extends User {
     }
 
     public Student(Integer id, String name, String surname, List<Subject> subjects,
-                   List<LearningMethod> learningMethods, List<PersonalityTrait> personalityTraits,
-                   PersonalizedPlan personalizedPlan, Field field, List<LearningMethod> learningMethodsBasedOnTraits,
-                   List<LearningMethod> learningMethodsBasedOnField, List<LearningMethod> learningMethodsBasedOnSubjectName, String username, String password, Role role) {
+            List<LearningMethod> learningMethods, List<PersonalityTrait> personalityTraits,
+            PersonalizedPlan personalizedPlan, Field field, List<LearningMethod> learningMethodsBasedOnTraits,
+            List<LearningMethod> learningMethodsBasedOnField, List<LearningMethod> learningMethodsBasedOnSubjectName) {
         this.id = id;
         this.name = name;
-        this.username = username;
-        this.password = password;
         this.surname = surname;
         this.subjects = subjects;
-        this.role = role;
         this.learningMethods = new ArrayList<LearningMethod>();
         this.personalityTraits = personalityTraits;
         this.personalizedPlan = personalizedPlan;
@@ -269,29 +229,18 @@ public class Student extends User {
         this.surname = surname;
     }
 
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
     public List<LearningMethod> getLearningMethods() {
         return learningMethods;
     }
 
-    public void setLearningMethodsUpdated2(boolean learningMethodsUpdated2) {
-        this.learningMethodsUpdated2 = learningMethodsUpdated2;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public void setLearningMethods(List<LearningMethod> lms) {
         for (LearningMethod lm : lms) {
@@ -333,13 +282,23 @@ public class Student extends User {
         return personalityTraits;
     }
 
+    public void setPersonalityTraits(List<PersonalityTrait> personalityTraits) {
+        this.personalityTraits = personalityTraits;
+    }
 
     public PersonalizedPlan getPersonalizedPlan() {
         return personalizedPlan;
     }
 
+    public void setPersonalizedPlan(PersonalizedPlan personalizedPlan) {
+        this.personalizedPlan = personalizedPlan;
+    }
     public Field getField() {
         return field;
+    }
+
+    public void setField(Field field) {
+        this.field = field;
     }
 
     
@@ -387,7 +346,9 @@ public class Student extends User {
         }
     }
 
-
+    public void emptyLearningMethodsBasedOnSubjectName() {
+        this.learningMethodsBasedOnSubjectName = new ArrayList<LearningMethod>();
+    }
 
     public boolean isLearningMethodsUpdated() {
         return learningMethodsUpdated;
@@ -407,8 +368,6 @@ public class Student extends User {
         this.learningMethodsUpdated2 = learningMethodsUpdated;
     }
 
-
-
     
 
 
@@ -420,99 +379,77 @@ public class Student extends User {
         this.shouldTriggerBackward = shouldTriggerBackward;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public Double getProsek() {
-        return prosek;
-    }
-
-    public void setProsek(Double prosek) {
-        this.prosek = prosek;
-    }
-
-    public List<Subject> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(List<Subject> subjects) {
-        this.subjects = subjects;
-    }
-
-    public void setPersonalityTraits(List<PersonalityTrait> personalityTraits) {
-        this.personalityTraits = personalityTraits;
-    }
-
-    public void setPersonalizedPlan(PersonalizedPlan personalizedPlan) {
-        this.personalizedPlan = personalizedPlan;
-    }
-
-    public void setField(Field field) {
-        this.field = field;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Student)) return false;
-
-        Student student = (Student) o;
-
-        if (getId() != null ? !getId().equals(student.getId()) : student.getId() != null) return false;
-        if (getName() != null ? !getName().equals(student.getName()) : student.getName() != null) return false;
-        if (getSurname() != null ? !getSurname().equals(student.getSurname()) : student.getSurname() != null)
-            return false;
-        if (getSubjects() != null ? !getSubjects().equals(student.getSubjects()) : student.getSubjects() != null)
-            return false;
-        if (getPersonalityTraits() != null ? !getPersonalityTraits().equals(student.getPersonalityTraits()) : student.getPersonalityTraits() != null)
-            return false;
-        if (getField() != student.getField()) return false;
-        if (getRole() != student.getRole()) return false;
-        if (getUsername() != null ? !getUsername().equals(student.getUsername()) : student.getUsername() != null)
-            return false;
-        return getPassword() != null ? getPassword().equals(student.getPassword()) : student.getPassword() == null;
-    }
-
     @Override
     public int hashCode() {
-        int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
-        result = 31 * result + (getSubjects() != null ? getSubjects().hashCode() : 0);
-        result = 31 * result + (getPersonalityTraits() != null ? getPersonalityTraits().hashCode() : 0);
-        result = 31 * result + (getField() != null ? getField().hashCode() : 0);
-        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);
-        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+        result = prime * result + ((subjects == null) ? 0 : subjects.hashCode());
+        result = prime * result + ((learningMethods == null) ? 0 : learningMethods.hashCode());
+        result = prime * result + ((personalityTraits == null) ? 0 : personalityTraits.hashCode());
+        result = prime * result + ((personalizedPlan == null) ? 0 : personalizedPlan.hashCode());
         return result;
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Student other = (Student) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        if (surname == null) {
+            if (other.surname != null)
+                return false;
+        } else if (!surname.equals(other.surname))
+            return false;
+        if (subjects == null) {
+            if (other.subjects != null)
+                return false;
+        } else if (!subjects.equals(other.subjects))
+            return false;
+        if (learningMethods == null) {
+            if (other.learningMethods != null)
+                return false;
+        } else if (!learningMethods.equals(other.learningMethods))
+            return false;
+        if (personalityTraits == null) {
+            if (other.personalityTraits != null)
+                return false;
+        } else if (!personalityTraits.equals(other.personalityTraits))
+            return false;
+        if (personalizedPlan == null) {
+            if (other.personalizedPlan != null)
+                return false;
+        } else if (!personalizedPlan.equals(other.personalizedPlan))
+            return false;
+        return true;
+    }
+
+    @Override
     public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", subjects=" + subjects +
-                ", learningMethods=" + learningMethods +
-                ", personalityTraits=" + personalityTraits +
-                ", personalizedPlan=" + personalizedPlan +
-                ", field=" + field +
-                ", learningMethodsBasedOnTraits=" + learningMethodsBasedOnTraits +
-                ", learningMethodsBasedOnField=" + learningMethodsBasedOnField +
-                ", learningMethodsBasedOnSubjectName=" + learningMethodsBasedOnSubjectName +
-                ", learningMethodsUpdated=" + learningMethodsUpdated +
-                ", learningMethodsUpdated2=" + learningMethodsUpdated2 +
-                ", learningMethodsForward1=" + learningMethodsForward1 +
-                ", learningMethodsForward2=" + learningMethodsForward2 +
-                ", shouldTriggerBackward=" + shouldTriggerBackward +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "Student [id=" + id + ", name=" + name + ", surname=" + surname + ", subjects=" + subjects
+                + ", learningMethods=" + learningMethods + ", personalityTraits=" + personalityTraits
+                + ", personalizedPlan=" + personalizedPlan + ", field=" + field + ", learningMethodsBasedOnTraits="
+                + learningMethodsBasedOnTraits + ", learningMethodsBasedOnField=" + learningMethodsBasedOnField
+                + ", learningMethodsBasedOnSubjectName=" + learningMethodsBasedOnSubjectName
+                + ", learningMethodsUpdated=" + learningMethodsUpdated + ", learningMethodsUpdated2="
+                + learningMethodsUpdated2 + ", learningMethodsForward1=" + learningMethodsForward1
+                + ", learningMethodsForward2=" + learningMethodsForward2 + "]";
     }
 
     // @Override
@@ -524,33 +461,7 @@ public class Student extends User {
     //             + ", learningMethodsBasedOnSubjectName=" + learningMethodsBasedOnSubjectName + "]";
     // }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(this.getRole().toString()));
-        return authorities;
-    }
+    
 
     
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.sbnz.backward.service.services.ActivateBackwardRulesService;
 import com.ftn.sbnz.backward.service.services.ForwardService;
 
-import com.ftn.sbnz.backward.service.models.*;
+import com.ftn.sbnz.backward.model.models.*;
 import java.util.ArrayList;
 import java.util.List;
 

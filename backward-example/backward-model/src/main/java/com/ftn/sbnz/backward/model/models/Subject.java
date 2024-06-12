@@ -1,16 +1,11 @@
 package com.ftn.sbnz.backward.model.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Getter;
-import lombok.Setter;
 import org.kie.api.definition.type.Position;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "subject")
 public class Subject {
     @Id
@@ -19,7 +14,6 @@ public class Subject {
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "student_id")
-    @JsonBackReference
     private Student student;
 
     @Position(1)
@@ -57,17 +51,6 @@ public class Subject {
         this.name = name;
         this.subjectName = subjectName;
     }
-    public Subject( String name, SubjectName subjectName) {
-        this.name = name;
-        this.subjectName = subjectName;
-    }
-
-    public Subject( String name, SubjectName subjectName, Student student) {
-        this.name = name;
-        this.subjectName = subjectName;
-        this.student = student;
-    }
-
 
     public Subject() {
     }
