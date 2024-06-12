@@ -14,18 +14,25 @@ import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.FactHandle;
 import org.kie.internal.utils.KieHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ActivateBackwardRulesService {
     private final KieContainer kieContainer;
     private final StudentRepository studentRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public ActivateBackwardRulesService(KieContainer kieContainer, StudentRepository studentRepository) {
@@ -80,7 +87,9 @@ public class ActivateBackwardRulesService {
         personalityTraits1.add(PersonalityTrait.CREATIVE);
         personalityTraits1.add(PersonalityTrait.EXTROVERTED);
         personalityTraits1.add(PersonalityTrait.ANALYTICAL);
-        Student s1 = new Student("Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES);
+
+        Student s1 = new Student("Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES, "pera", bCryptPasswordEncoder.encode("123"));
+
         s1.setField(Field.NATURAL_SCIENCES);
         s1.setShouldTriggerBackward(true);
 
@@ -182,6 +191,7 @@ public class ActivateBackwardRulesService {
         }
 
     }
+
 
     public List<LearningMethod> fireReport1() {
         List<LearningMethod> result = new ArrayList<>();
