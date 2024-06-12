@@ -3,13 +3,24 @@ package com.ftn.sbnz.backward.service.services;
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.ftn.sbnz.backward.service.models.*;
 import com.ftn.sbnz.backward.service.repository.StudentRepository;
+import org.checkerframework.checker.units.qual.A;
+import org.drools.template.DataProvider;
+import org.drools.template.DataProviderCompiler;
+import org.drools.template.objects.ArrayDataProvider;
+import org.kie.api.KieBase;
+import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.FactHandle;
+import org.kie.internal.utils.KieHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -76,7 +87,9 @@ public class ActivateBackwardRulesService {
         personalityTraits1.add(PersonalityTrait.CREATIVE);
         personalityTraits1.add(PersonalityTrait.EXTROVERTED);
         personalityTraits1.add(PersonalityTrait.ANALYTICAL);
+
         Student s1 = new Student("Pera", "Peric", subjects1, personalityTraits1, Field.NATURAL_SCIENCES, "pera", bCryptPasswordEncoder.encode("123"));
+
         s1.setField(Field.NATURAL_SCIENCES);
         s1.setShouldTriggerBackward(true);
 
@@ -128,16 +141,19 @@ public class ActivateBackwardRulesService {
     }
 
 
-    public Student fireBackward(Student s, LearningMethod method) {
+    public boolean fireBackward(Student s, LearningMethod method) {
         KieSession kSession = kieContainer.newKieSession();
         try {
+
+            AtomicBoolean methodAccepted = new AtomicBoolean(false);
+            kSession.insert(methodAccepted);
+
             kSession.insert(s);
 
             String methodAsString = method.toString();
             kSession.insert(methodAsString);
 
-            kSession.insert(new Connected("AUDITORY", "CREATIVE"));
-
+            kSession.setGlobal("yValue", methodAsString);
 
             kSession.insert(new Connected("GROUP_LEARNING", "PHYSICS"));
             kSession.insert(new Connected("AUDITORY", "HISTORY"));
@@ -162,12 +178,20 @@ public class ActivateBackwardRulesService {
             System.out.println("----------------------final--------------------------------");
 
             System.out.println(s + "\n");
-            return s;
+
+            if (methodAccepted.get()) {
+                System.out.println("Condition met in at least one iteration");
+                return true;
+            } else {
+                System.out.println("Condition not met in any iteration");
+                return false;
+            }
         } finally {
             kSession.dispose();
         }
 
     }
+
 
     public List<LearningMethod> fireReport1() {
         List<LearningMethod> result = new ArrayList<>();
@@ -207,4 +231,47 @@ public class ActivateBackwardRulesService {
     }
 
 
+    public void fireTemplate1(Student s, LearningMethod method) throws FileNotFoundException {
+      InputStream templateFieldRecommendations = new FileInputStream("C:/Users/andre/OneDrive/Documents/GitHub/sbnz/backward-example/backward-kjar/src/main/resources/rules/template1.drt");
+
+        //field na osnovu metoda
+        String[][] data = {
+                {"NATURAL_SCIENCES", "KINESTHETIC"},
+                {"MATS", "VERBAL"},
+                {"SOCIAL_SCIENCES", "AUDITORY"},
+                {"MEDICAL_SCIENCES", "VISUAL"},
+                {"ARTS", "AUDIO_VISUAL"},
+                {"LANGUAGES", "GROUP_LEARNING"},
+                {"LECAL_ECONOMIC_SCIENCES", "LOGICAL_MATHEMATICAL"},
+                {"ARGICULTURE_ENVIRONMENTAL_SCIENCES", "LOGICAL_MATHEMATICAL"},
+                {"TECHNICAL_SCIENCES", "LEARNING_THROUGH_PLAY"}
+        };
+
+        DataProvider dataProvider = new ArrayDataProvider(data);
+
+        DataProviderCompiler converter = new DataProviderCompiler();
+        String drlFieldRecommendations = converter.compile(dataProvider, templateFieldRecommendations);
+
+        KieHelper kieHelper = new KieHelper();
+        kieHelper.addContent(drlFieldRecommendations, ResourceType.DRL);
+
+        KieBase kieBase = kieHelper.build();
+        KieSession kieSession = kieBase.newKieSession();
+
+        ArrayList<String> recommendations = new ArrayList<>();
+        kieSession.setGlobal("recommendations", recommendations);
+
+//        for (Field field : Field.values()) {
+//            kieSession.insert(field);
+//        }
+        kieSession.insert(s);
+        kieSession.insert(method.toString());
+
+
+        kieSession.fireAllRules();
+        kieSession.dispose();
+
+        System.out.println(recommendations);
+
+    }
 }

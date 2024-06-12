@@ -1,26 +1,26 @@
-package rules;
-
-import com.ftn.sbnz.backward.service.models.Student;
-import com.ftn.sbnz.backward.service.models.LearningMethod;
-import java.util.List
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
-rule "report1"
-when
-    $student: Student()
-then
-    Double minAverage = Double.MAX_VALUE;
-    List<LearningMethod> learningMethods = new ArrayList<>();
-
-    for (Student student : Student()) {
-        if (student.getProsek() != null && student.getProsek() < minAverage) {
-            minAverage = student.getProsek();
-            learningMethods = student.getLearningMethods();
-        }
-    }
-
-    // Postavljanje globalne promenljive sa rezultatima
-    insert(learningMethods);
-end
+//package rules;
+//
+//import com.ftn.sbnz.backward.service.models.Student;
+//import com.ftn.sbnz.backward.service.models.LearningMethod;
+//import java.util.List
+//import java.util.ArrayList;
+//import java.util.HashSet;
+//import java.util.Set;
+//
+//rule "report1"
+//when
+//    $student: Student()
+//then
+//    Double minAverage = Double.MAX_VALUE;
+//    List<LearningMethod> learningMethods = new ArrayList<>();
+//
+//    for (Student student : Student()) {
+//        if (student.getProsek() != null && student.getProsek() < minAverage) {
+//            minAverage = student.getProsek();
+//            learningMethods = student.getLearningMethods();
+//        }
+//    }
+//
+//    // Postavljanje globalne promenljive sa rezultatima
+//    insert(learningMethods);
+//end

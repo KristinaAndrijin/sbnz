@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Student } from 'app/model/Student';
+import { LearningMethod, Student } from 'app/model/Student';
 import { StudentService } from 'app/services/student.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { StudentService } from 'app/services/student.service';
 })
 export class AdminHomeComponent {
   students :Student[] = [];
+  learningMethods: LearningMethod[] = [];
 
   constructor(private router: Router, private studentService: StudentService) {}
 
@@ -17,10 +18,22 @@ export class AdminHomeComponent {
     this.studentService.getAllStudents().subscribe((data: Student[]) => {
       this.students = data;
     });
-    console.log(this.students)
   }
 
   redirectToEditStudent(studentId: number) {
     this.router.navigate(['/admin-edit-student', studentId]); 
+  }
+
+  getReport1(){
+    this.studentService.getReport1().subscribe((data2: LearningMethod[]) => {
+      this.learningMethods = data2;
+      console.log("avs");
+      console.log(this.learningMethods);
+      console.log("avs");
+    });
+  }
+
+  getReport2(){
+    
   }
 }

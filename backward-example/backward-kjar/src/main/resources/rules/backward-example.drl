@@ -4,6 +4,9 @@ import com.ftn.sbnz.backward.service.models.Connected;
 import com.ftn.sbnz.backward.service.models.Student;
 import com.ftn.sbnz.backward.service.models.PersonalityTrait;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+global String yValue;
 
 
  rule "personality traits empty"
@@ -23,27 +26,42 @@ end
 
 rule "backward2"
 when
-    String(this == "backward2")
-    $method: String()
-    $student: Student()
-    $traits: List() from $student.getPersonalityTraits()
-    $trait: PersonalityTrait() from $traits
-    $traitName: String() from $trait.name()
-    eval($traitName.equals(x))
-    isConnectedWith($method, $traitName;)
+    String( this == "backward2" )
+    isConnectedWith(x, y;)
+    eval(y.equals(yValue))
+    Student( $traits : personalityTraits)
+    $trait : PersonalityTrait() from $traits
+    eval($trait.name().equals(x))
+    $methodAccepted : AtomicBoolean()
 then
-    System.out.println($traitName + " is parent of " + $method + " and " + $traitName + " is student's personality trait. Method: " + $method);
-    System.out.println("Moguće postaviti metod " + $method + " za studenta jer je povezan sa osobinom ličnosti.");
+    $methodAccepted.set(true);
+    System.out.println(x + " is parent of " + y + " and " + x + " is student's personality trait.");
 end
 
+//
 //rule "backward2"
 //when
+//    String(this == "backward2")
+//    $method: String()
 //    $student: Student()
 //    $traits: List() from $student.getPersonalityTraits()
 //    $trait: PersonalityTrait() from $traits
-//    $method: String()
-//    eval($method != null && $trait.name() != null)
-//    isConnectedWith($method, $traitName; $traitName: $trait.name())
+//    $traitName: String() from $trait.name()
+//    eval($traitName.equals(x))
+//    isConnectedWith($method, $traitName;)
 //then
-//    System.out.println($traitName + " is connected with learning method: " + $method);
+//    System.out.println($traitName + " is parent of " + $method + " and " + $traitName + " is student's personality trait. Method: " + $method);
+//    System.out.println("Moguće postaviti metod " + $method + " za studenta jer je povezan sa osobinom ličnosti.");
 //end
+//
+////rule "backward2"
+////when
+////    $student: Student()
+////    $traits: List() from $student.getPersonalityTraits()
+////    $trait: PersonalityTrait() from $traits
+////    $method: String()
+////    eval($method != null && $trait.name() != null)
+////    isConnectedWith($method, $traitName; $traitName: $trait.name())
+////then
+////    System.out.println($traitName + " is connected with learning method: " + $method);
+////end

@@ -1,0 +1,32 @@
+template header
+    field
+    method
+
+package rules;
+import com.ftn.sbnz.backward.service.models.Student;
+import com.ftn.sbnz.backward.service.models.LearningMethod;
+import com.ftn.sbnz.backward.service.models.PersonalityTrait;
+import com.ftn.sbnz.backward.service.models.SubjectName;
+import com.ftn.sbnz.backward.service.models.Subject;
+import com.ftn.sbnz.backward.service.models.Connected;
+import com.ftn.sbnz.backward.service.models.Field;
+import java.util.HashSet;
+import java.util.Set;
+
+global Set<Field> recommendations;
+global String method;
+
+template "field-recommendation-rules"
+
+rule "Recommend fields for method"
+when
+    $method: String(this == method)
+    $entry: String[]($entry == data[0], this[1] == $method) from data
+then
+    System.out.println("Method: " + $method);
+    System.out.println("Field: " + $entry[0]);
+
+    recommendations.add($entry[0]);
+end
+
+end template
