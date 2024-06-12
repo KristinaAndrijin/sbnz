@@ -20,7 +20,7 @@ Zatim, pokrenuti aplikaciju komandom ng serve.
 
 ### Spring Boot
 U *Intellij*-u izvršiti sledeće komande:
-*Dvaput kliknite na taster Ctrl na tastaturi. Ovo će otvoriti dijalog za brzu pretragu akcija.
-*U dijalogu za pretragu upišite maven clean. Izaberite opciju Run Maven Goal 'clean'.
-Ponovo dvaput kliknite na Ctrl. U dijalogu za pretragu upišite maven install.
-Izaberite opciju Run Maven Goal 'install'.
+* Dvaput kliknite na taster Ctrl na tastaturi. Ovo će otvoriti dijalog za brzu pretragu akcija. U dijalogu za pretragu upišite maven clean.
+* Izaberite opciju Run Maven Goal 'clean'.
+* Ponovo dvaput kliknite na Ctrl. U dijalogu za pretragu upišite maven install.
+* Izaberite opciju Run Maven Goal 'install'.
