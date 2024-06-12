@@ -13,22 +13,23 @@ import { LearningMethodDialogComponent } from 'app/dialogs/learning-method-dialo
 })
 export class StudentHomeComponent {
   isDialogOpen: boolean = false;
-  studentId: number = 531;
+  studentId: number = 359;
   student: any;
   learningMethods: LearningMethod[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      // this.studentId = +params['id'];
+    this.route.queryParams.subscribe(params => {
+      console.log(params['id']);
+      this.studentId = params['id'];
       this.loadStudent(this.studentId);
       console.log(this.student.getLearningMethodsForward1());
     });
   }
 
   loadStudent(id: number): void {
-    this.studentService.getStudentById(this.studentId).subscribe((data: Student) => {
+    this.studentService.getStudentById(id).subscribe((data: Student) => {
       this.student = data;
       this.learningMethods = this.student.getLearningMethodsForward12;
       console.log('Loaded student:', this.student);

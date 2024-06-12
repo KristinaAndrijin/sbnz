@@ -8,6 +8,7 @@ import com.ftn.sbnz.backward.service.dto.LoginRequestDTO;
 import com.ftn.sbnz.backward.service.models.User;
 import com.ftn.sbnz.backward.service.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -53,7 +54,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequestDTO request, HttpServletResponse response) {
+    public ResponseEntity<?> login(@RequestBody LoginRequestDTO request, HttpServletResponse response) {
         User user = userService.findByUsername(request.getUsername(), request.getPassword());
 
         if (bCryptPasswordEncoder.matches(request.getPassword(), user.getPassword())) {
@@ -61,9 +62,9 @@ public class AuthController {
             cookie.setMaxAge(3600);
             cookie.setPath("/");
             response.addCookie(cookie);
-            return "Login successful";
+            return ResponseEntity.ok(user.getId());
         } else {
-            return "Incorrect password";
+            return ResponseEntity.badRequest().build();
         }
     }
 

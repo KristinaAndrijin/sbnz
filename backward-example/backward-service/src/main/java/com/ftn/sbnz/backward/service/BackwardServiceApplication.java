@@ -1,11 +1,8 @@
 package com.ftn.sbnz.backward.service;
 
-import com.ftn.sbnz.backward.service.models.Subject;
-import com.ftn.sbnz.backward.service.models.SubjectName;
-import com.ftn.sbnz.backward.service.models.Field;
-import com.ftn.sbnz.backward.service.models.PersonalityTrait;
-import com.ftn.sbnz.backward.service.models.Student;
+import com.ftn.sbnz.backward.service.models.*;
 import com.ftn.sbnz.backward.service.repository.StudentRepository;
+import com.ftn.sbnz.backward.service.repository.UserRepository;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieScanner;
 import org.kie.api.runtime.KieContainer;
@@ -27,6 +24,9 @@ import java.util.List;
 public class BackwardServiceApplication implements CommandLineRunner {
 	@Autowired
 	private StudentRepository studentRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -98,6 +98,9 @@ public class BackwardServiceApplication implements CommandLineRunner {
 		studentRepository.save(student1);
 		studentRepository.save(student2);
 		studentRepository.save(student3);
+
+		User user = new User("admin", bCryptPasswordEncoder.encode("admin"));
+		userRepository.save(user);
 	}
 }
 

@@ -18,6 +18,7 @@ import { EditSubjectsComponent } from './dialogs/edit-subjects/edit-subjects.com
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { EditTraitsComponent } from './dialogs/edit-traits/edit-traits.component';
 import { LearningMethodDialogComponent } from './dialogs/learning-method-dialog/learning-method-dialog.component';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { LearningMethodDialogComponent } from './dialogs/learning-method-dialog/
     MatRadioModule
   ],
   providers: [
+    CookieService,
     provideAnimationsAsync('noop')
   ],
   bootstrap: [AppComponent]
