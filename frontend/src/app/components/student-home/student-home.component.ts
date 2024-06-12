@@ -13,7 +13,7 @@ import { LearningMethodDialogComponent } from 'app/dialogs/learning-method-dialo
 })
 export class StudentHomeComponent {
   isDialogOpen: boolean = false;
-  studentId: number = 359;
+  studentId: number = 427;
   student: any;
   learningMethods: LearningMethod[] = [];
 
@@ -21,14 +21,14 @@ export class StudentHomeComponent {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.studentId = +params['id'];
+      // this.studentId = +params['id'];
       this.loadStudent(this.studentId);
       console.log(this.student.getLearningMethodsForward1());
     });
   }
 
   loadStudent(id: number): void {
-    this.studentService.getStudentById(359).subscribe((data: Student) => {
+    this.studentService.getStudentById(this.studentId).subscribe((data: Student) => {
       this.student = data;
       this.learningMethods = this.student.getLearningMethodsForward12;
       console.log('Loaded student:', this.student);
@@ -38,7 +38,7 @@ export class StudentHomeComponent {
   }
 
   requestLearningMethod1() {
-    this.studentService.getLearningMethodsForward1(259).subscribe(
+    this.studentService.getLearningMethodsForward1(this.studentId).subscribe(
       (methods) => {
         this.learningMethods = [];
         this.learningMethods = methods;
@@ -53,7 +53,7 @@ export class StudentHomeComponent {
   }
 
   requestLearningMethod2() {
-    this.studentService.getLearningMethodsForward2(259).subscribe(
+    this.studentService.getLearningMethodsForward2(this.studentId).subscribe(
       (methods) => {
         this.learningMethods = [];
         this.learningMethods = methods;
@@ -88,7 +88,7 @@ export class StudentHomeComponent {
   }
 
   updateStudentTraits(selectedTraits: any[]): void {
-    this.studentService.updateStudentTraits(263, selectedTraits).subscribe(() => {
+    this.studentService.updateStudentTraits(this.studentId, selectedTraits).subscribe(() => {
       console.log('Student traits updated successfully.');
       this.loadStudent(this.studentId);
     }, error => {
@@ -110,10 +110,15 @@ export class StudentHomeComponent {
   }
 
   updateLearningMethod(method: LearningMethod): void {
-    this.studentService.getLearningMethodsBackward(359, method).subscribe(
-      () => {
-        console.log('Learning method sent successfully.');
-        // this.loadStudent(this.studentId);
+    this.studentService.getLearningMethodsBackward(this.studentId, method).subscribe(
+      (result: boolean) => {
+        if (result) {
+          this.learningMethods = [method];
+          console.log('Learning method sent successfully.');
+        } else {
+          console.log('Learning method sent successfully.');
+          alert('The method does not suit your personality type!');
+        }
       },
       error => {
         console.error('Error sending learning method:', error);

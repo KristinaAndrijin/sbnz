@@ -105,15 +105,27 @@ public class StudentController {
     }
 
     @GetMapping("/{id}/backward")
-    public ResponseEntity<LearningMethod> getLearningMethodsBackward(@PathVariable Long id,@RequestParam LearningMethod method) {
+    public ResponseEntity<Boolean> getLearningMethodsBackward(@PathVariable Long id, @RequestParam LearningMethod method) {
         Optional<Student> studentOpt = studentRepository.findById(id);
         if (studentOpt.isPresent()) {
             System.out.println(method);
             Student student = studentOpt.get();
-            backService.fireBackward(student, method);
-            return ResponseEntity.ok(method);
+            boolean conditionMet = backService.fireBackward(student, method);
+            return ResponseEntity.ok(conditionMet);
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/getReport1")
+    public ResponseEntity<List<LearningMethod>> getReport1() {
+        try {
+            List<LearningMethod> learningMethods = new ArrayList<>();
+            backService.fireReport1();
+            System.out.println(learningMethods);
+            return ResponseEntity.ok(learningMethods);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

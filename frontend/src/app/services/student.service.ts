@@ -44,9 +44,18 @@ export class StudentService {
     const url = `${this.apiUrl}/${id}/forward12`;
     return this.http.get<LearningMethod[]>(url);
   }
-  getLearningMethodsBackward(id: number, method: LearningMethod): Observable<LearningMethod[]> {
+  getLearningMethodsBackward(id: number, method: LearningMethod): Observable<boolean> {
     const url = `${this.apiUrl}/${id}/backward?method=${method}`;
+    return this.http.get<boolean>(url);
+  }
+  
+  getReport1(): Observable<LearningMethod[]> {
+    const url = `${this.apiUrl}/getReport1`;
     return this.http.get<LearningMethod[]>(url);
+  }
+
+  getReport2(): Observable<LearningMethod[]> {
+    return this.http.get<LearningMethod[]>(this.apiUrl+"/getReport1"    );
   }
   
 }
