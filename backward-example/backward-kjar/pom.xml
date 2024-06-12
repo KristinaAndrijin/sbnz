@@ -48,6 +48,7 @@
 			<artifactId>backward-model</artifactId>
 			<version>${backward.version}</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

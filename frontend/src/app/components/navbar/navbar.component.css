@@ -1,0 +1,30 @@
+.nav-wrapper {
+    background-color: #1d656d;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .brand-logo {
+    font-size: 1.5em;
+    color: #fff;
+  }
+  
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  li {
+    margin-left: 20px;
+  }
+  
+  li a {
+    color: #fff;
+    cursor: pointer;
+  }
+  

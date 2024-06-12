@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Select Learning Method</h1>
+<div mat-dialog-content>
+  <mat-radio-group [(ngModel)]="selectedMethod">
+    <mat-radio-button *ngFor="let method of learningMethods" [value]="method">{{ method }}</mat-radio-button>
+  </mat-radio-group>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [disabled]="!selectedMethod" (click)="confirmSelection()">Ok</button>
+</div>

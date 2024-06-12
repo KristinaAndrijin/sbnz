@@ -1,0 +1,28 @@
+//template header
+//    field
+//    method
+//
+//package rules;
+//import com.ftn.sbnz.backward.service.models.Student;
+//import com.ftn.sbnz.backward.service.models.LearningMethod;
+//import java.util.HashSet;
+//import java.util.Set;
+//import java.util.ArrayList;
+//
+//global ArrayList<String> recommendations;
+//global String method;
+//
+//template "field-recommendation-rules"
+//
+//rule "Recommend @{field} for @{method}"
+//when
+//    $field: String[]($entry == data[0])
+//    $method: String(this == method)
+//    $entry: String[]($entry == $field, this[1] == $method) from data
+//then
+//    System.out.println("Method: " + &method);
+//    System.out.println("Field: " + $entry[0]);
+//
+//    recommendations.add($entry[0]);
+//end
+//end template

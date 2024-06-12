@@ -1,0 +1,36 @@
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input-field {
+    margin-bottom: 20px;
+  }
+  
+  .input-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #1d656d;;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #555;
+  }
+  

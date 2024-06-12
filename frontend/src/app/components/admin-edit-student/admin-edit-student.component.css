@@ -1,0 +1,57 @@
+.student-container {
+    display: flex;
+  }
+  
+  .student-info, .student-properties {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .student-info {
+    border-right: 1px solid #ccc;
+  }
+  
+  .student-info h2, .student-properties h2 {
+    margin-top: 0;
+  }
+  
+  .actions {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #1d656d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #555;
+  }
+
+  .blacktext{
+    color: black;
+  }
+
+  .backdrop-blur {
+    backdrop-filter: blur(5px);
+  }
+  
+  .custom-dialog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .blur-background {
+    backdrop-filter: blur(50px);
+  }
+  
+  
+  
+  
