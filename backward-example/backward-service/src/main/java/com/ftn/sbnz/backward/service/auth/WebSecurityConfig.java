@@ -2,6 +2,7 @@ package com.ftn.sbnz.backward.service.auth;
 
 import com.ftn.sbnz.backward.service.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -40,9 +41,8 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/**").authenticated()
+                .antMatchers("/**").permitAll()
+//                .antMatchers("/**").authenticated()
                 .and()
                 .headers().frameOptions().disable().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
