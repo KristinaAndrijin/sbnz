@@ -10,10 +10,10 @@ Andrea Katzenberger SV69/2020
 ## Instrukcije za pokretanje aplikacije
 ### Angular
 Prvo je potrebno izvršiti sledeće komande:
-npm install
-npm install @angular/material @angular/cdk
-npm install @auth0/angular-jwt
-npm install @angular/router
+npm install, 
+npm install @angular/material @angular/cdk, 
+npm install @auth0/angular-jwt, 
+npm install @angular/router, 
 npm install @angular/animations
 
 Zatim, pokrenuti aplikaciju komandom ng serve.
