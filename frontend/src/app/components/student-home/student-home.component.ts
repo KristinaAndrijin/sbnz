@@ -13,7 +13,7 @@ import { LearningMethodDialogComponent } from 'app/dialogs/learning-method-dialo
 })
 export class StudentHomeComponent {
   isDialogOpen: boolean = false;
-  studentId: number = 427;
+  studentId: number = 531;
   student: any;
   learningMethods: LearningMethod[] = [];
 

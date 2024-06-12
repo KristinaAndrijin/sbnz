@@ -1,46 +1,28 @@
-package rules;
-
-import com.ftn.sbnz.backward.model.models.*;
-import java.util.List
-import java.util.HashSet
-import java.util.ArrayList
-
-//rule "create recommendation learning methods list based on field"
+//template header
+//    field
+//    method
+//
+//package rules;
+//import com.ftn.sbnz.backward.service.models.Student;
+//import com.ftn.sbnz.backward.service.models.LearningMethod;
+//import java.util.HashSet;
+//import java.util.Set;
+//import java.util.ArrayList;
+//
+//global ArrayList<String> recommendations;
+//global String method;
+//
+//template "field-recommendation-rules"
+//
+//rule "Recommend @{field} for @{method}"
 //when
-//    $student: Student(learningMethodsUpdated2 == false,
-//                      learningMethodsBasedOnTraits != null,
-//                      learningMethodsBasedOnTraits.isEmpty() == false,
-//                      learningMethodsBasedOnField != null,
-//                      learningMethodsBasedOnField.isEmpty() == false)
+//    $field: String[]($entry == data[0])
+//    $method: String(this == method)
+//    $entry: String[]($entry == $field, this[1] == $method) from data
 //then
-//    Set<LearningMethod> commonMethods = new HashSet<>( $student.getLearningMethodsBasedOnTraits() );
-//    commonMethods.retainAll( $student.getLearningMethodsBasedOnField() );
-//    List<LearningMethod> commons = new ArrayList<LearningMethod>(commonMethods);
-//    modify($student) {
-//        setLearningMethods(commons),
-//        setLearningMethods2Updated(true);
-//    }
+//    System.out.println("Method: " + &method);
+//    System.out.println("Field: " + $entry[0]);
+//
+//    recommendations.add($entry[0]);
 //end
-
-rule "Check All Traits for Student"
-when
-    $student : Student( $traits : personalityTraits )
-then
-    System.out.println("\nStudent has the following personality traits: " + $traits +"\n");
-end
-
-rule "Check All Learning Methods for Student"
-when
-    $student : Student( $methods : learningMethods )
-then
-    System.out.println("\nStudent's learning methods: " + $methods +"\n");
-end
-
-rule "Check All Subject Names for Student"
-when
-    $student : Student( $subjects : subjects )
-then
-    System.out.println("\nStudent's subjects: " + $subjects +"\n");
-end
-
-
+//end template

@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 @RestController
@@ -112,6 +113,19 @@ public class StudentController {
             Student student = studentOpt.get();
             boolean conditionMet = backService.fireBackward(student, method);
             return ResponseEntity.ok(conditionMet);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/{id}/template1")
+    public ResponseEntity<Student> template(@PathVariable Long id) throws FileNotFoundException {
+        Optional<Student> studentOpt = studentRepository.findById(id);
+        if (studentOpt.isPresent()) {
+            Student student = studentOpt.get();
+            LearningMethod lm = LearningMethod.LOGICAL_MATHEMATICAL;
+            backService.fireTemplate1(student, lm);
+            return ResponseEntity.ok(student);
         } else {
             return ResponseEntity.notFound().build();
         }
